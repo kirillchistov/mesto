@@ -1,0 +1,52 @@
+.profile {
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 169px auto max-content 1fr max-content;
+  grid-template-areas: 
+    "avatar name edit . add"
+    "avatar job . . add";
+  column-gap: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .profile  {
+    max-width: 100%;
+    grid-template-columns: auto auto;
+    grid-template-areas:
+      "avatar avatar"
+      "name edit"
+      "job job"
+      "add add";
+    gap: 5px;
+  }
+}
+
+
+/* С Flex не получается 
+.profile {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media screen and (max-width: 780px) {
+  .profile {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .profile {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+}
+*/

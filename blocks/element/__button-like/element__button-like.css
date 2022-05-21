@@ -1,0 +1,24 @@
+.element__button-like {
+  max-width: 22px;
+  max-height: 19px;
+  padding: 0 0 0 20px;
+  margin-top: 25px;
+  grid-column: 2/3;
+  justify-self: center;
+  align-self: stretch;
+  background-image: url(../../../images/button-like.svg);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: none;
+  background-color: #fff;
+}
+
+.element__button-like:focus {
+  outline: none;
+}
+
+.element__button-like:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}

@@ -1,0 +1,26 @@
+.profile__avatar{
+  grid-area: avatar;
+  max-width: 120px;
+  justify-self: start;
+  align-self: center;
+  border-radius: 50%;
+}
+
+@media screen and (max-width: 600px) {
+  .profile__avatar  {
+    width: 100%;
+    justify-self: center;
+  }
+}
+
+/* This one for flex
+.profile__avatar {
+  width: 120px;
+  height: 120px;
+  display: block;
+  object-fit: cover;
+  border-radius: 50%;
+  position: relative;
+  z-index: -1;
+}
+*/
