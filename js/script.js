@@ -3,8 +3,7 @@
 let popup = document.querySelector('.popup');
 let btnEditProfile = document.querySelector('.profile__button-edit');
 let btnClosePopup = document.querySelector('.popup__close');
-let profileEditForm = document.forms.profileEditForm;
-/* let profileEditForm = document.forms['profileEdit']; */
+let profileEditForm = document.querySelector('.popup__form-profile-edit')
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__job');
 let profileNameInput = document.querySelector('.popup__input-name');
@@ -14,7 +13,6 @@ let profileJobInput = document.querySelector('.popup__input-job');
 // Подставляем в поля текущие значения со страницы, убирая пробелы 
 
 function popupOpen() {
-    console.log("here we go");
     popup.classList.add('popup_opened');
     profileNameInput.value = profileName.textContent.trim();
     profileJobInput.value = profileJob.textContent.trim();

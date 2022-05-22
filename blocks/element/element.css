@@ -11,23 +11,3 @@
   border-radius: 13px;
   overflow: hidden;
 }
-
-/*
-
-.element {
-  width: 100%;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
-  justify-content: center;
-  row-gap: 20px;
-  column-gap: 18px;
-}
-
-@media screen and (max-width: 767px) {
-  .element {
-    column-gap: 18px;
-    row-gap: 21px;
-  }
-}
-*/
