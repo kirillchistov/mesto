@@ -10,13 +10,12 @@
   background-image: url(../../../images/button-edit.svg);
   background-repeat: no-repeat;
   background-position: center;
-  border-radius: 2px;
   border: 1px solid #fff;
 }
 
 .profile__button-edit:hover {
   cursor: pointer;
-  opacity: .8;
+  opacity: .6;
 }
 
 @media screen and (max-width: 768px) {
@@ -31,7 +30,5 @@
     height: 18px;
     margin: 0;
     padding-left: 10px;
-    align-self: center;
-    justify-self: start;
   }
 }

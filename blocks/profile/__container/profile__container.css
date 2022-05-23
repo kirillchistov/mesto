@@ -8,10 +8,8 @@
   
   @media screen and (max-width: 560px) {
     .profile {
-      display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
       box-sizing: border-box;
     }
   }
