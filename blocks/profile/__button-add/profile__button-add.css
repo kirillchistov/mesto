@@ -34,3 +34,9 @@
     margin: -2px;
   }
 }
+
+@media screen and (max-width: 350px) {
+  .profile__button-add {
+    margin-top: -20px;
+  }
+}
