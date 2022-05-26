@@ -57,8 +57,8 @@
 * .popup__header размер - done
 * .popup__submit размер шрифта - done
 * Еще раз проверить все отступы и размеры (см. pixel perfect), в т.ч.:
-* 1280 Отступы (http://joxi.ru/823RdPxHzQzKym) - done where possible
-* 320 отступы (http://joxi.ru/zANOzgYI1L1xDr) - done where possible
-* Размер фона кнопки (http://joxi.ru/MAjxE4otd3dLRm) - ?
-* Отступы http://joxi.ru/v29k36PC4K4Yzr  - done where possible
-* Отступы не соответствуют макету http://joxi.ru/gmv5p4vTeGeMdr  - done where possible
+* 1280 Отступы (http://joxi.ru/823RdPxHzQzKym) - done (pixel perfect within 1px)
+* 320 отступы (http://joxi.ru/zANOzgYI1L1xDr) - done (pixel perfect within 1px)
+* Размер фона кнопки (http://joxi.ru/MAjxE4otd3dLRm) - (pixel perfect within 1px)
+* Отступы http://joxi.ru/v29k36PC4K4Yzr  - done (pixel perfect within 1px)
+* Отступы не соответствуют макету http://joxi.ru/gmv5p4vTeGeMdr  - (pixel perfect within 1px)
