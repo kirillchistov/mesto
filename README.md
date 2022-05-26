@@ -47,20 +47,18 @@
 **Доработки**
 * БЭМ по стилям (перенести импорт вложенных стилей в css секций)
 * БЭМ по именованию кнопок, функций и переменных - done
-* Поправить решение без внешних отступов для кнопок - done where possible
 * Докрутить адаптивность попапа - done
-* Еще раз проверить все отступы в адаптиве vs. макет в фигме - done
-* Настроить правильную систему веток в Git - done partially
+* Настроить правильную систему веток в Git - done
 * js --> index.js done
 * Корректно подключить шрифт - done
 * Кнопка (http://joxi.ru/82QxB6Qt8a83bm) - done
 * .popup__header размер - done
 * .popup__submit размер шрифта - done
-* Доделать pixel perfect, в т.ч.:
+* .popup__header размер - done
+* .popup__submit размер шрифта - done
+* Еще раз проверить все отступы и размеры (см. pixel perfect), в т.ч.:
 * 1280 Отступы (http://joxi.ru/823RdPxHzQzKym) - done where possible
 * 320 отступы (http://joxi.ru/zANOzgYI1L1xDr) - done where possible
 * Размер фона кнопки (http://joxi.ru/MAjxE4otd3dLRm) - ?
 * Отступы http://joxi.ru/v29k36PC4K4Yzr  - done where possible
 * Отступы не соответствуют макету http://joxi.ru/gmv5p4vTeGeMdr  - done where possible
-* .popup__header размер - done
-* .popup__submit размер шрифта - done

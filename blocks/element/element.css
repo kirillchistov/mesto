@@ -1,10 +1,10 @@
 .element {
-  max-width: 100%;
-  margin: 0;
+  max-width: 282px;
+  margin: 0 auto;
   list-style: none;
   display: grid;
   align-items: center;
-  justify-items: start;
+  justify-items: center;
   grid-template-columns: 1fr 70px;
   color: #000;
   background-image: linear-gradient(to bottom, #000, #000 10%, #fff 10%, #fff 100%);

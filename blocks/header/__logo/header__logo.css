@@ -5,9 +5,15 @@
   display: block;
 }
 
+@media screen and (max-width: 1000px) {
+  .header__logo {
+    padding: 0 0 32px 38px;
+  }
+}
+
 @media screen and (max-width: 450px) {
   .header__logo {
     max-width: 104px;
-    padding-bottom: 32px;
+    padding: 0 0 32px 27px;
   }
 }

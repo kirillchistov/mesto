@@ -21,12 +21,16 @@
 @media screen and (max-width: 768px) {
   .profile__button-add {
     width: 50px;
+    justify-self: center;
+    align-self: center;
   }
 }
 
 @media screen and (max-width: 600px) {
   .profile__button-add {
-    width: 100%;
-    justify-self: start;
+    width: 282px;
+    height: 50px;
+    justify-self: center;
+    margin: -2px;
   }
 }

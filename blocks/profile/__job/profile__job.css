@@ -1,7 +1,7 @@
 .profile__job {
   max-width: 100%;
   margin: 0;
-  padding: 0 0 36px 0;
+  padding: 5px 0 36px 0;
   grid-area: job;
   justify-self: start;
   align-self: start;
@@ -23,5 +23,7 @@
 @media screen and (max-width: 420px) {
   .profile__job  {
     font-size: 14px;
+    padding: 0;
+    margin: -5px 0 26px;
   }
 }

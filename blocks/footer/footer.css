@@ -6,13 +6,8 @@
 
 @media screen and (max-width: 1000px) {
   .footer {
+    max-width: 90%;
     padding: 55px 0 45px;
-  }
-}
-
-@media screen and (max-width: 560px) {
-  .footer {
-    padding: 50px 0 40px;
   }
 }
 

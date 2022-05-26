@@ -17,7 +17,6 @@
 .popup__close:hover {
   cursor: pointer;
   opacity: .6;
-  transform: rotate(65deg);
 }
 
 .popup__close:focus {
