@@ -18,9 +18,9 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img class="profile__avatar" src="./images/avatar.jpg" alt="Жак-Ив Кусто - исследователь океана">
-        <h1 class="profile__name">Жак-Ив Кусто</h1>
-        <p class="profile__job">Исследователь океана</p>
+        <img class="profile__avatar" src="./images/avatar.jpg" alt="Наив Кустов - исследователь океанариумов">
+        <h1 class="profile__name">Наив Кустов</h1>
+        <p class="profile__job">Исследователь океанариумов</p>
         <button class="profile__button-edit" type="button" aria-label="Редактировать профиль"></button>
         <button class="profile__button-add" type="button" aria-label="Добавить место"></button>
       </section>
@@ -74,14 +74,14 @@
     </footer>
 
     <!--  Поп-ап с формой редактирования галереи -->
-    <div class="popup">
+    <div class="popup popup__profile" id="popupProfile">
       <div class="popup__container">
-        <button class="popup__close" type="button" aria-label="Закрыть"></button>
+        <button class="popup__close popup__profile_close" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
-        <form class="popup__form" name="profileEdit">
+        <form class="popup__form popup__form_profile" name="profileEdit" id="profileEdit">
           <input class="popup__input popup__input_user_name" type="text" name="name" placeholder="Автор">
           <input class="popup__input popup__input_user_job" type="text" name="job" placeholder="Профессия">
-          <input class="popup__submit" type="submit" value="Сохранить">
+          <input class="popup__submit popup__submit_profile" type="submit" value="Сохранить" id="btnPopupProfileSubmit">
         </form>
       </div>
     </div>
