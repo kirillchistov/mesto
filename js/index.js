@@ -4,7 +4,7 @@ const btnAdd = document.querySelector('.profile__button-add');
 
 /* Попап редактирования профиля */
 const popupEdit = document.querySelector('#popupProfile');
-const formProfile =  document.querySelector('#formProfileEdit');
+const formProfile = document.querySelector('#formProfileEdit');
 const nameInput = document.querySelector('.popup__input_user_name');
 const jobInput = document.querySelector('.popup__input_user_job');
 const profileName = document.querySelector('.profile__name');
@@ -20,7 +20,7 @@ const placeLinkInput = document.querySelector('.popup__input_place_link');
 const btnCreate = document.querySelector('.popup__add-place_submit');
 
 /* Попап открытия карточки места */
-const popupElement = document.querySelector('.popup__element');
+const popupElement = document.querySelector('#popupElement');
 const popupImage = popupElement.querySelector('.popup__image');
 const popupImageCaption = popupElement.querySelector('.popup__image-caption');
 const imgElements = document.querySelectorAll('.element__image');

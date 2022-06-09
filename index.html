@@ -53,33 +53,37 @@
     <!--  / Поп-ап с формой редактирования профиля -->
 
     <!--  Поп-ап для просмотра карточки места - надо бы figure + figcaption -->
-    <div class="popup popup__element" id="popupElement">
-      <figure class="popup__container popup__container-photo">
-        <button class="popup__close popup__close_photo-container" type="button" aria-label="Закрыть" id="btnPopupElementClose"></button>
-        <img class="popup__image" src="https://kirillchistov.github.io/mesto/images/elbrus.jpg" alt="Фото места">
-        <figcaption class="popup__image-caption">Место</figcaption>
-      </figure>
+    <div class="popup" id="popupElement">
+      <div class="popup__element">
+        <figure class="popup__container popup__container-photo">
+          <button class="popup__close popup__close_photo-container" type="button" aria-label="Закрыть" id="btnPopupElementClose"></button>
+          <img class="popup__image" src="https://kirillchistov.github.io/mesto/images/elbrus.jpg" alt="Фото места">
+          <figcaption class="popup__image-caption">Место</figcaption>
+        </figure>
+      </div>
     </div>
     <!--  / Поп-ап для просмотра карточки места -->
 
 
 
     <!--  Поп-ап с формой добавления нового места -->
-    <div class="popup popup__add-place" id="popupAddPlace">
-      <div class="popup__container">
-        <button class="popup__close popup__close_add-place" type="button" aria-label="Закрыть"></button>
-        <h2 class="popup__header popup__header_place">Новое место</h2>
-        <form class="popup__form popup__form_add_place" name="addPlace" id="formAddPlace">
-          <input class="popup__input popup__input_place_name" type="text" placeholder="Название">
-          <input class="popup__input popup__input_place_link" type="text" placeholder="Ссылка на иллюстрацию">
-          <input class="popup__submit popup__add-place_submit" type="submit" value="Сохранить" id="btnPopupAddPlaceSubmit">
-        </form>
+    <div class="popup" id="popupAddPlace">
+      <div class="popup__add-place">
+        <div class="popup__container">
+          <button class="popup__close popup__close_add-place" type="button" aria-label="Закрыть"></button>
+          <h2 class="popup__header popup__header_place">Новое место</h2>
+          <form class="popup__form popup__form_add_place" name="addPlace" id="formAddPlace">
+            <input class="popup__input popup__input_place_name" type="text" placeholder="Название">
+            <input class="popup__input popup__input_place_link" type="text" placeholder="Ссылка на иллюстрацию">
+            <input class="popup__submit popup__add-place_submit" type="submit" value="Сохранить" id="btnPopupAddPlaceSubmit">
+          </form>
+        </div>
       </div>
     </div>
     <!-- / Поп-ап с формой добавления нового места -->
 
     <!-- Шаблон карточки места (элемент списка) -->
-    <template class="element__template" id="elementTemplate">
+    <template class="element-template" id="elementTemplate">
       <li class="element">
         <button class="element__button-delete" type="button"></button>
         <img class="element__image" src="https://kirillchistov.github.io/mesto/images/elbrus.jpg" alt="Одно из любимых мест">
