@@ -1,4 +1,3 @@
-
 /* Кнопки в профиле */
 const btnEdit = document.querySelector('.profile__button-edit');
 const btnAdd = document.querySelector('.profile__button-add');
@@ -50,28 +49,6 @@ function editProfile(popup) {
     openPopup(popupElement);
   });
 };
-
-
-/* Открытие карточки места 
-function openElement(item) {
-  item.querySelector('.element__image').addEventListener('click', evt => {
-    popupImage.src = evt.target.src;
-    popupImageCaption.textContent = evt.target.alt;
-    popupImageCaption.alt = evt.target.alt;
-  });
-  openPopup(popupElement);
-};
-*/
-
-
-/* const openImagePopup = function(image) {
-  openPopup(popupElement);
-  const placeName = popupElement.querySelector('.element__title');
-  const placeImage = popupElement.querySelector('.element__image');
-  popupPhoto.querySelector('.popup__image-text').textContent = placeName.textContent;
-  popupPhoto.querySelector('.popup__image').src = placeImage.src;
-};
-*/
 
 /* Закрытие попапов - удаление класса */
 function closePopup(popup) {
