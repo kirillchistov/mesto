@@ -1,5 +1,5 @@
 .element__item {
-  max-width: 282px;
+  min-width: 282px;
   margin: 0 auto;
   list-style: none;
   display: grid;

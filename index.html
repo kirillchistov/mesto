@@ -28,42 +28,7 @@
       <!-- В галерее будет замена карточек 4-6, в будущем - CRUD карточек -->
       <section class="gallery">
         <ul class="elements">
-          <li class="element">
-            <button class="element__button-delete" type="button" aria-label="Удалить карточку"></button>
-            <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск" title="Карачаевск">
-            <h2 class="element__title">Карачаевск</h2>
-            <button class="element__button-like" type="button" aria-label="Поделиться с друзьями"></button>
-          </li>
-          <li class="element">
-            <button class="element__button-delete" type="button" aria-label="Удалить карточку"></button>
-            <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус" title="Гора Эльбрус">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__button-like" type="button" aria-label="Поделиться с друзьями"></button>
-          </li>
-          <li class="element">
-            <button class="element__button-delete" type="button" aria-label="Удалить карточку"></button>
-            <img class="element__image" src="./images/dombai.jpg" alt="Домбай" title="Домбай">
-            <h2 class="element__title">Домбай</h2>
-            <button class="element__button-like" type="button" aria-label="Поделиться с друзьями"></button>
-          </li>
-          <li class="element">
-            <button class="element__button-delete" type="button" aria-label="Удалить карточку"></button>
-            <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус" title="Гора Эльбрус">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__button-like" type="button" aria-label="Поделиться с друзьями"></button>
-          </li>
-          <li class="element">
-            <button class="element__button-delete" type="button" aria-label="Удалить карточку"></button>
-            <img class="element__image" src="./images/dombai.jpg" alt="Домбай" title="Домбай">
-            <h2 class="element__title">Домбай</h2>
-            <button class="element__button-like" type="button" aria-label="Поделиться с друзьями"></button>
-          </li>
-          <li class="element">
-            <button class="element__button-delete" type="button" aria-label="Удалить карточку"></button>
-            <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаево-Черкессия" title="Карачаевск">
-            <h2 class="element__title">Карачаево-Черкессия</h2>
-            <button class="element__button-like" type="button" aria-label="Поделиться с друзьями"></button>
-          </li>
+
 
         </ul>
       </section>
@@ -73,41 +38,52 @@
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
 
-    <!--  Поп-ап с формой редактирования галереи -->
+    <!--  Поп-ап с формой редактирования профиля -->
     <div class="popup popup__profile" id="popupProfile">
       <div class="popup__container">
-        <button class="popup__close popup__profile_close" type="button" aria-label="Закрыть"></button>
+        <button class="popup__close popup__profile_close" type="button" aria-label="Закрыть" id="btnPopupProfileClose"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
-        <form class="popup__form popup__form_profile" name="profileEdit" id="profileEdit">
+        <form class="popup__form popup__form_profile" name="profileEdit" id="formProfileEdit">
           <input class="popup__input popup__input_user_name" type="text" name="name" placeholder="Автор">
           <input class="popup__input popup__input_user_job" type="text" name="job" placeholder="Профессия">
           <input class="popup__submit popup__submit_profile" type="submit" value="Сохранить" id="btnPopupProfileSubmit">
         </form>
       </div>
     </div>
-    <!--  / Поп-ап с формой редактирования галереи -->
+    <!--  / Поп-ап с формой редактирования профиля -->
 
-    <!--  Поп-ап с формой редактирования галереи -->
-    <div class="popup popup__add_place">
-      <div class="popup__container popup__card_place">
-        <button class="popup__close popup__close_card_place" type="button" aria-label="Закрыть"></button>
-        <h2 class="popup__header_place">Новое место</h2>
-        <form class="popup__form" name="addPlace">
+    <!--  Поп-ап для просмотра карточки места - надо бы figure + figcaption -->
+    <div class="popup popup__photo_element" id="popupElement">
+      <figure class="popup__container popup__container-photo">
+        <button class="popup__close popup__close_photo-container" type="button" aria-label="Закрыть" id="btnPopupElementClose"></button>
+        <img class="popup__image photo__item" src="" alt="Фото места">
+        <figcaption class="popup__image-caption">Место</figcaption>
+      </figure>
+    </div>
+    <!--  / Поп-ап для просмотра карточки места -->
+
+
+
+    <!--  Поп-ап с формой добавления нового места -->
+    <div class="popup popup__add_place" id="popupAddPlace">
+      <div class="popup__container">
+        <button class="popup__close popup__close_add_place" type="button" aria-label="Закрыть"></button>
+        <h2 class="popup__header popup__header_place">Новое место</h2>
+        <form class="popup__form popup__form_add_place" name="addPlace" id="formAddPlace">
           <input class="popup__input popup__input_place_name" type="text" placeholder="Название">
           <input class="popup__input popup__input_place_link" type="text" placeholder="Ссылка на иллюстрацию">
-          <input class="popup__submit" type="submit" value="Сохранить">
-  <!--    <button class="popup__input-save_place" type="submit">Сохранить</button> -->
+          <input class="popup__submit popup__add_place_submit" type="submit" value="Сохранить" id="btnPopupAddPlaceSubmit">
         </form>
       </div>
     </div>
-    <!-- / Поп-ап с формой редактирования галереи -->
+    <!-- / Поп-ап с формой добавления нового места -->
 
-    <!-- Шаблон карточки галереи (элемент списка) -->
-    <template class="card-template">
-      <li class="element">
+    <!-- Шаблон карточки места (элемент списка) -->
+    <template class="element__template" id="elementTemplate">
+      <li class="element photo__item">
         <button class="element__button-delete" type="button"></button>
         <img class="element__image" src="" alt="Одно из любимых мест">
-        <h2 class="element__title"></h2>
+        <h2 class="element__title popup__image-caption"></h2>
         <button class="element__button-like" type="button" aria-label="Поделиться с друзьями"></button>
       </li>
     </template>
@@ -116,6 +92,7 @@
 
 
     <!-- Вызываем скрипт и молимся -->
+    <script src="./js/cards.js"></script>
     <script src="./js/index.js"></script>
   </body>
 

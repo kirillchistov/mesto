@@ -1,42 +1,148 @@
-// Находим в DOM попап и его элементы, присваиваем константам
 
-const popup = document.querySelector('.popup');
-const popupProfile = document.querySelector('#popupProfile');
-const btnEditProfile = document.querySelector('.profile__button-edit');
-const btnClosePopup = document.querySelector('.popup__close');
-const profileEditForm = document.querySelector('.popup__form')
+/* Кнопки в профиле */
+const btnEdit = document.querySelector('.profile__button-edit');
+const btnAdd = document.querySelector('.profile__button-add');
+
+/* Попап редактирования профиля */
+const popupEdit = document.querySelector('#popupProfile');
+const formProfile =  document.querySelector('#formProfileEdit');
+const nameInput = document.querySelector('.popup__input_user_name');
+const jobInput = document.querySelector('.popup__input_user_job');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
-const profileNameInput = document.querySelector('.popup__input_user_name');
-const profileJobInput = document.querySelector('.popup__input_user_job');
 
-// добавляем модификатор, чтобы попап открывался 
-// Подставляем в поля текущие значения со страницы, убирая пробелы 
+/* Попап добавления нового места */
+const popupAdd = document.querySelector('#popupAddPlace');
+const gallery = document.querySelector('.elements');
+const elementTemplate = document.querySelector('#elementTemplate').content;
+const formCreateCard = document.querySelector('#popupAddPlace');
+const placeNameInput = document.querySelector('.popup__input_place_name');
+const placeLinkInput = document.querySelector('.popup__input_place_link');
+const btnCreate = document.querySelector('.popup__add_place_submit');
 
-function popupProfileOpen() {
-    popupProfile.classList.add('popup_opened');
-    profileNameInput.value = profileName.textContent.trim();
-    profileJobInput.value = profileJob.textContent.trim();
-}
+/* Попап открытия карточки места */
+const popupElement = document.querySelector('.popup__photo_element');
+const popupImage = popupElement.querySelector('.popup__image');
+const popupImageCaption = popupElement.querySelector('.popup__image-caption');
+const imgElements = document.querySelectorAll('.element__image');
 
-// чтобы закрыть попап, удаляем модификатор 
+/* Кнопка закрытия попапа */
+const btnsClose = document.querySelectorAll('.popup__close');
 
-function popupProfileClose() {
-    popupProfile.classList.remove('popup_opened');
-}
+/* Открытие попаов */
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+};
 
-// добавляем обработчик, не забыв про отключение дефолта
-// по сабмиту возвращаем значения, введенные в форме, приведя их к строкам 
+function editProfile(popup) {
+  openPopup(popup);
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+};
 
-function formProfileSubmitHandler (evt) {
+
+ function openImagePopup(image) {
+  image.querySelector('.element__image').addEventListener('click', evt => {
+    popupImage.src = evt.target.src;
+    popupImage.alt = evt.target.alt;
+    popupImage.title = evt.target.alt;
+    popupImageCaption.textContent = evt.target.alt;
+    openPopup(popupElement);
+  });
+};
+
+
+/* Открытие карточки места 
+function openElement(item) {
+  item.querySelector('.element__image').addEventListener('click', evt => {
+    popupImage.src = evt.target.src;
+    popupImageCaption.textContent = evt.target.alt;
+    popupImageCaption.alt = evt.target.alt;
+  });
+  openPopup(popupElement);
+};
+*/
+
+
+/* const openImagePopup = function(image) {
+  openPopup(popupElement);
+  const placeName = popupElement.querySelector('.element__title');
+  const placeImage = popupElement.querySelector('.element__image');
+  popupPhoto.querySelector('.popup__image-text').textContent = placeName.textContent;
+  popupPhoto.querySelector('.popup__image').src = placeImage.src;
+};
+*/
+
+/* Закрытие попапов - удаление класса */
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+};
+
+/* Закрытие попапов - обработка клика по кнопке "x" ближайшего попапа */
+function handleClickClosePopup(evt) {
+  closePopup(evt.target.closest('.popup'));
+};
+
+/* Подписка на событие клика по кнопке "x" */
+btnsClose.forEach(button => {
+  button.addEventListener('click', handleClickClosePopup);
+});
+
+/* Удаление карточки места */
+function deleteItem(item) {
+  item.querySelector('.element__button-delete').addEventListener('click', evt => {
+    evt.target.closest('.element').remove();
+  });
+};
+
+/* Обработка события сохранения изменений в профиле с отменой перезагрузки */
+function submitFormHandler (evt) {
     evt.preventDefault();
-    profileName.textContent = profileNameInput.value;
-    profileJob.textContent = profileJobInput.value;
-    popupProfileClose();
-}
+    profileName.textContent = nameInput.value;
+    profileJob.textContent = jobInput.value;
+    closePopup(popupEdit);
+};
 
-// добавляем вызов функций через подписку на события click и submit  
+/* Подписка на события кликов по кнопкам в профиле: */
 
-btnEditProfile.addEventListener('click', popupProfileOpen);
-btnClosePopup.addEventListener('click', popupProfileClose);
-profileEditForm.addEventListener('submit', formProfileSubmitHandler);
+btnEdit.addEventListener('click', () => editProfile(popupEdit));
+btnAdd.addEventListener('click', () => openPopup(popupAdd));
+
+/* Стрелочная функция для изменения кнопки Like  при клике */
+function toggleLike(item) {
+  item.querySelector('.element__button-like').addEventListener('click', evt => {
+    evt.target.classList.toggle('element__button-like_active');
+  })
+};
+
+
+/* Создание карточки: клон элемента из шаблона, добавление названия и ссылки */
+function createCard(card) {
+  const galleryItem = elementTemplate.querySelector('.element').cloneNode(true);
+  const elementItem = galleryItem.querySelector('.element__image');
+  galleryItem.querySelector('.element__title').textContent = card.name;
+  elementItem.src = card.link;
+  elementItem.alt = card.name;
+  toggleLike(galleryItem);
+  deleteItem(galleryItem);
+  openImagePopup(galleryItem);
+  return galleryItem;
+};
+
+function createCardForm(evt) {
+  evt.preventDefault();
+  const card = {};
+  card.link = placeLinkInput.value;
+  card.name = placeNameInput.value;
+  gallery.prepend(createCard(card));
+  closePopup(popupAdd);
+  formCreateCard.reset()
+};
+initialCards.forEach((card) => {
+  const cardItem = createCard(card)
+  gallery.prepend(cardItem);
+});
+
+/* Подписка на события отправки форм профиля и Нового места */
+formProfile.addEventListener('submit', submitFormHandler);
+formCreateCard.addEventListener('submit', createCardForm);
