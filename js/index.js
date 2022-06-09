@@ -17,10 +17,10 @@ const elementTemplate = document.querySelector('#elementTemplate').content;
 const formCreateCard = document.querySelector('#popupAddPlace');
 const placeNameInput = document.querySelector('.popup__input_place_name');
 const placeLinkInput = document.querySelector('.popup__input_place_link');
-const btnCreate = document.querySelector('.popup__add_place_submit');
+const btnCreate = document.querySelector('.popup__add-place_submit');
 
 /* Попап открытия карточки места */
-const popupElement = document.querySelector('.popup__photo_element');
+const popupElement = document.querySelector('.popup__element');
 const popupImage = popupElement.querySelector('.popup__image');
 const popupImageCaption = popupElement.querySelector('.popup__image-caption');
 const imgElements = document.querySelectorAll('.element__image');
