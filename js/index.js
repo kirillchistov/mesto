@@ -17,7 +17,7 @@ const elementTemplate = document.querySelector('#elementTemplate').content;
 const formCreateCard = document.querySelector('#popupAddPlace');
 const placeNameInput = document.querySelector('.popup__input_place_name');
 const placeLinkInput = document.querySelector('.popup__input_place_link');
-const btnCreate = document.querySelector('.popup__add-place_submit');
+const btnCreate = document.querySelector('#btnPopupAddPlaceSubmit');
 
 /* Попап открытия карточки места */
 const popupElement = document.querySelector('#popupElement');
