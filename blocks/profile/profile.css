@@ -1,30 +1,23 @@
 .profile {
   max-width: 880px;
   margin: 0 auto;
-  padding: 0;
-  display: grid;
-  grid-template: 70px 50px / 140px auto max-content 1fr max-content;
-  grid-template-areas: 
-    "avatar name edit . add"
-    "avatar job . . add";
-  column-gap: 10px;
+  padding: 40px 0 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 @media screen and (max-width: 1000px) {
   .profile  {
-    max-width: 90%;
+    padding-left: 19px;
+    padding-right: 19px;
   }
 }
 
 @media screen and (max-width: 600px) {
   .profile  {
-    max-width: 100%;
-    grid-template: 130px 50px 35px 84px / auto auto;
-    grid-template-areas:
-      "avatar avatar"
-      "name edit"
-      "job job"
-      "add add";
-    gap: 5px;
+    flex-direction: column;
+    align-items: center;
   }
 }

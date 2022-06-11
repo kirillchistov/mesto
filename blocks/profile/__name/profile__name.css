@@ -1,45 +1,21 @@
 .profile__name {
-  max-width: 100%;
-  grid-area: name;
   margin: 0;
-  padding: 0;
+  padding: 0 18px 0 0;
+  align-self: center;
   font-style: normal;
   font-weight: 500;
   font-size: 42px;
-  line-height: 1.33;
-  justify-self: start;
-  align-self: end;
+  line-height: 48px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .profile__name {
-    font-size: 32px;
-  }
-}
-
-
-@media screen and (max-width: 600px) {
-  .profile__name  {
+    padding-right: 10px;
+    text-align: center;
     font-size: 27px;
-    line-height: 2;
-    justify-self: end;
-    align-self: end;
-    padding: 0;
-    margin: 0 8px 0;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .profile__name  {
-    font-size: 27px;
-    line-height: 2;
-    justify-self: end;
-    align-self: end;
-    padding: 0;
-    margin: 5px 8px 0;
+    line-height: 33px;
   }
 }
