@@ -50,19 +50,29 @@
       <div class="popup__container">
         <button class="popup__close" type="button" aria-label="Закрыть" id="btnPopupProfileClose"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
-        <form class="popup__form popup__form_profile" name="profileEdit" id="formProfileEdit">
-          <input class="popup__input popup__input_user_name" type="text" name="name" placeholder="Автор">
-          <input class="popup__input popup__input_user_job" type="text" name="job" placeholder="Профессия">
-          <input class="popup__submit popup__submit_profile" type="submit" value="Сохранить" id="btnPopupProfileSubmit">
+        <form class="popup__form popup__form_profile" name="profileEdit" id="formProfileEdit" novalidate>
+          <fieldset class="popup__fieldset">
+            <label class="popup__label">
+              <input class="popup__input form__input popup__input_user_name" type="text" id="profile-name" 
+                     required minlength="2" maxlength="40" placeholder="Автор">
+              <span class="popup__field-error profile-name-error"></span>
+            </label>
+            <label class="popup__label">
+              <input class="popup__input form__input popup__input_user_job" type="text" id="profile-job" 
+                     required minlength="2" maxlength="200" placeholder="Профессия">
+              <span class="popup__field-error profile-job-error">Ошибка</span>
+            </label>
+            <input class="popup__submit form__submit popup__button popup__submit_profile" type="submit" value="Сохранить" id="btnPopupProfileSubmit">
+          </fieldset>
         </form>
       </div>
     </div>
     <!--  / Поп-ап с формой редактирования профиля -->
 
-    <!--  Поп-ап для просмотра карточки места - надо бы figure + figcaption -->
+    <!--  Поп-ап для просмотра карточки места -->
     <div class="popup" id="popupElement">
       <div class="popup__element">
-        <figure class="popup__container popup__container-photo">
+        <figure class="popup__container-photo">
           <button class="popup__close popup__close_photo-container" type="button" aria-label="Закрыть" id="btnPopupElementClose"></button>
           <img class="popup__image" src="https://kirillchistov.github.io/mesto/images/elbrus.jpg" alt="Фото места">
           <figcaption class="popup__image-caption">Место</figcaption>
@@ -79,10 +89,20 @@
         <div class="popup__container">
           <button class="popup__close popup__close_add-place" type="button" aria-label="Закрыть"></button>
           <h2 class="popup__header popup__header_place">Новое место</h2>
-          <form class="popup__form popup__form_add_place" name="addPlace" id="formAddPlace">
-            <input class="popup__input popup__input_place_name" type="text" required placeholder="Название">
-            <input class="popup__input popup__input_place_link" type="url" required placeholder="Ссылка на иллюстрацию">
-            <input class="popup__submit" type="submit" value="Сохранить" id="btnPopupAddPlaceSubmit">
+          <form class="popup__form popup__form_add_place" name="addPlace" id="formAddPlace" novalidate>
+            <fieldset class="popup__fieldset">
+              <label class="popup__label">
+                <input class="popup__input form__input popup__input_place_name" minlength="2" maxlength="30" type="text" 
+                      required placeholder="Название" name="new-card-title" id="new-card-title">
+                <span class="popup__field-error new-card-title-error"></span>
+              <label class="popup__label">
+                <input class="popup__input form__input popup__input_place_link" type="url" 
+                       required placeholder="Ссылка на иллюстрацию" name="new-card-source" id="new-card-source">
+                <span class="popup__field-error new-card-source-error">Ошибка</span>
+              </label>
+              <input class="popup__submit form__submit popup__button" type="submit" value="Сохранить" id="btnPopupAddPlaceSubmit"
+                     name="new-card-save-btn" >
+            </fieldset>
           </form>
         </div>
       </div>
