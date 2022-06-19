@@ -50,8 +50,8 @@
 * [Чек-лист ПР5](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-5.pdf)
 
 **Разработка ПР6**
-* Валидация формы «Редактировать профиль» [см. макет в Figma](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)
-* Валидация формы «Новое место» 
+* Валидация формы «Редактировать профиль» [см. макет в Figma](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1) - done
+* Валидация формы «Новое место» - done
 * Закрытие попапа кликом на оверлей - done
 * Закрытие попапа нажатием на Esc - done
 * Учесть [требования к коду валидации форм](https://practicum.yandex.ru/learn/web/courses/35d951a1-b62c-4a96-96ac-a8118657fad0/sprints/34081/topics/43fd3acc-ab09-42b0-9a1a-478423a2650a/lessons/e42c1359-1e14-4586-bb92-ad1b44c6e0c4/) 
@@ -62,5 +62,8 @@
 
 **Доработки**
 * Переписать функции на стрелочные - done
-* Разделить функции (1 функция = 1 фича) - TBD 
+* Разделить функции (1 функция = 1 фича) - done where possible
 * Починить вертикальный скролл (пропал в ПР5) - done
+* Починить спан с ошибкой (текст выходит за пределы спана)
+* Починить закрытие по Esc если в форме есть ошибка ввода
+* Поправить ошибки, найденные ревьюером
