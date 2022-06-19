@@ -6,7 +6,7 @@
   font-size: 10px;
   line-height: 15px;
   color: #f00;
-  border-bottom-color: red; 
+  border-bottom-color: red;
   opacity: 0;
   transition: 0.3s;
 }
