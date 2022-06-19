@@ -98,6 +98,7 @@ const handleClickClosePopup = (evt) => {
 
 const openImagePopup = (image) => {
   image.querySelector('.element__image').addEventListener('click', evt => {
+    popupImage.src = ''; // сброить кэш
     popupImage.src = evt.target.src;
     popupImage.alt = evt.target.alt;
     popupImage.title = evt.target.alt;
