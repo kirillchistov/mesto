@@ -91,8 +91,8 @@ const createCardForm = (evt) => {
 /* Пробовал сделать через вызов disableButton, но явно надо ее поставить в видимость внутри этой функции */
 /*  console.log(validateCfg, buttonElement); */
 /*  disableButton(validateCfg, buttonElement) */
-const submitBtn = formCreateCard.querySelector('.popup__submit');
-  setAttribute('disabled', true);
+  const submitBtn = formCreateCard.querySelector('.popup__submit');
+  submitBtn.setAttribute('disabled', true);
   submitBtn.classList.add('popup__submit_invalid');
   closePopup(popupAdd);
 };
