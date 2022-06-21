@@ -1,7 +1,5 @@
 .popup__container-photo {
-/*  max-width: 80vw;
-  max-height: 80vh;
-*/
+  max-width: 75vw;
   padding: 0;
   margin: 0 auto;
   position: relative;

@@ -32,59 +32,72 @@ const popupList = Array.from(document.querySelectorAll('.popup'));
 const btnsClose = document.querySelectorAll('.popup__close');
 
 
-
-//  Открытие попаов //
-const openPopup = (popup) => {
+//  Функция открытия попапа - добавляем класс и подписку на события //
+function openPopup(popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', (evt) => closeByEsc(evt, popup));
-};
+  clearPopupFormErrors(popup);
+  document.addEventListener('keydown', closeByEsc);
+  popup.addEventListener('mousedown', closeByOverlay);
+}
 
+//  Функция закрытия попапа - удаляем класс и подписку на события //
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closeByEsc);
+  popup.removeEventListener('mousedown', closeByOverlay);
+}
+
+//  Функция закрытия попапа - удаляем класс и подписку на события //
 const editProfile = (popup) => {
   openPopup(popup);
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+  hideInputError();
 };
 
-//  Закрытие попапов - удаление класса и отписка //
-const closePopup = (popup) => {
-  popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', (evt) => closeByEsc(evt, popup));
-};
-
-
-/* Закрытие через Esc */
-const closeByEsc = (evt, popup) => {
-  if (evt.key === 'Escape') {
-      closePopup(popup)
+// Закрытие нажатием на Escape // 
+function closeByEsc(evt) {
+  if (evt.key === "Escape") {
+    closePopup(document.querySelector('.popup_opened'));
   }
 }
 
-// Закрытие нажатием на overlay
+// Закрытие нажатием на overlay //
 const closeByOverlay = (popup) => {
-  popup.addEventListener('click', (evt) => {
+  popup.addEventListener('mousedown', (evt) => {
       if (evt.target === evt.currentTarget) {
           closePopup(popup);
       }
   });
 };
 
+//  Закрытие по клику за пределами попапа для всех попапов //
 popupList.forEach((currentPopup) => {
   closeByOverlay(currentPopup);
 });
 
+//  Закрытие по Esc для всех попапов //
+popupList.forEach((currentPopup) => {
+  closeByEsc(currentPopup);
+});
+
+
 //  Форма добавления места: массив с названиями и ссылками из полей формы //
 const createCardForm = (evt) => {
-  evt.preventDefault();
+  evt.preventDefault(); 
   const card = {};
   card.link = placeLinkInput.value;
   card.name = placeNameInput.value;
   gallery.prepend(createCard(card));
-  closePopup(popupAdd);
   formCreateCard.reset();
+  const submitBtn = formCreateCard.querySelector('.popup__submit');
+  submitBtn.setAttribute('disabled', true);
+  submitBtn.classList.add('popup__submit_invalid');
+  closePopup(popupAdd);
 };
 
 //  Обработка события сохранения изменений в профиле с отменой перезагрузки //
-const submitProfileFormHandler = (evt) => {
+const handleSubmitProfileForm = (evt) => {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
@@ -96,6 +109,7 @@ const handleClickClosePopup = (evt) => {
   closePopup(evt.target.closest('.popup'));
 };
 
+//  Открытие попапа с картинкой //
 const openImagePopup = (image) => {
   image.querySelector('.element__image').addEventListener('click', evt => {
     popupImage.src = '';
@@ -107,7 +121,19 @@ const openImagePopup = (image) => {
   });
 };
 
-//  Удаление карточки места //
+//  Функция очистки ошибок в форме при открытии попапа //
+function clearPopupFormErrors(popup) {
+  const popupForm = popup.querySelector('.popup__form');
+  popupForm.querySelectorAll('.popup__input').forEach(function(input) {
+      input.classList.remove('popup__field-error_type');
+  });
+  popupForm.querySelectorAll('.popup__field-error').forEach(function(errorItem) {
+      errorItem.classList.remove('popup__field-error_active');
+      errorItem.textContent = '';
+  });
+};
+
+//  Удаление карточки места  //
 const deleteItem = (item) => {
   item.querySelector('.element__button-delete').addEventListener('click', evt => {
     evt.target.closest('.element').remove();
@@ -134,14 +160,14 @@ const createCard = (card) => {
   return galleryItem;
 };
 
-
+//  Вставка массива карточек, доступных по умолчанию //
 initialCards.forEach((card) => {
   const cardItem = createCard(card);
   gallery.prepend(cardItem);
 });
 
 //  Подписка на события отправки форм профиля и Нового места //
-formProfile.addEventListener('submit', submitProfileFormHandler);
+formProfile.addEventListener('submit', handleSubmitProfileForm);
 formCreateCard.addEventListener('submit', createCardForm);
 
 //  Подписка на события кликов по кнопкам в профиле: //

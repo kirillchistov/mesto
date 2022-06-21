@@ -8,6 +8,7 @@ const validationConfig = {
   errorClass: 'popup__field-error_active'
 };
 
+// Показываем спан с ошибкой
 const showInputError = (validateCfg, formElement, inputElement, errorMessage) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.add(validateCfg.inputErrorClass);
@@ -15,6 +16,7 @@ const showInputError = (validateCfg, formElement, inputElement, errorMessage) =>
   errorElement.classList.add(validateCfg.errorClass);
 };
 
+// Прячем спан с ошибкой
 const hideInputError = (validateCfg, formElement, inputElement) => {
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove(validateCfg.inputErrorClass);
@@ -22,6 +24,7 @@ const hideInputError = (validateCfg, formElement, inputElement) => {
   errorElement.textContent = '';
 };
 
+// Проверка на инвалидность ввода
 const checkInputValidity = (validateCfg, formElement, inputElement) => {
   if (!inputElement.validity.valid) {
       showInputError(validateCfg, formElement, inputElement, inputElement.validationMessage);
@@ -36,19 +39,29 @@ const hasInvalidInput = (inputList) => {
   })
 };
 
+function disableButton(validateCfg, buttonElement) {
+  buttonElement.classList.add(validateCfg.inactiveButtonClass);
+  buttonElement.setAttribute('disabled', true);
+};
+
+function enableButton(validateCfg, buttonElement) {
+  buttonElement.classList.remove(validateCfg.inactiveButtonClass);
+  buttonElement.removeAttribute('disabled');
+};
+
+// Функция изменения состояния кнопки
 const toggleButtonState = (validateCfg, inputList, buttonElement) => {
   // Если есть хотя бы один невалидный инпут
   if (hasInvalidInput(inputList)) {
-      // сделай кнопку неактивной
-      buttonElement.classList.add(validateCfg.inactiveButtonClass);
-      buttonElement.setAttribute('disabled', true);
+      // кнопка будет неактивна
+      disableButton(validateCfg, buttonElement);
   } else {
-      // иначе сделай кнопку активной
-      buttonElement.classList.remove(validateCfg.inactiveButtonClass);
-      buttonElement.removeAttribute('disabled');
+      // если все валидно, кнопка активна
+      enableButton(validateCfg, buttonElement);
   }
 };
 
+// Слушаем и обрабатываем события в массиве полей ввода и на кнопке
 const setEventListeners = (validateCfg, formElement) => {
   const inputList = Array.from(formElement.querySelectorAll(validateCfg.inputSelector));
   const buttonElement = formElement.querySelector(validateCfg.submitButtonSelector);
@@ -61,6 +74,7 @@ const setEventListeners = (validateCfg, formElement) => {
   });
 };
 
+// Слушаем и обрабатываем события в массиве полей ввода и на кнопке
 const enableValidation = (validateCfg) => {
   const formList = Array.from(document.querySelectorAll(validateCfg.formSelector));
   formList.forEach((formElement) => {
@@ -72,4 +86,5 @@ const enableValidation = (validateCfg) => {
   });
 };
 
+// Включаем функцию с валидацией, передавая ей конфиг с картой классов
 enableValidation(validationConfig);
