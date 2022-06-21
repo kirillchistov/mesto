@@ -35,7 +35,7 @@ const btnsClose = document.querySelectorAll('.popup__close');
 function openPopup(popup) {
   popup.classList.add('popup_opened');
   clearPopupFormErrors(popup);
-  popup.addEventListener('keydown', closeByEsc);
+  document.addEventListener('keydown', closeByEsc);
   popup.addEventListener('mousedown', closeByOverlay);
 }
 
@@ -62,7 +62,7 @@ function closeByEsc(evt) {
 
 // Закрытие нажатием на overlay //
 function closeByOverlay(popup) {
-  popup.addEventListener('mousedown', (evt) => {
+  document.addEventListener('mousedown', (evt) => {
       if (evt.target === evt.currentTarget) {
           closePopup(popup);
       }
@@ -82,14 +82,17 @@ popupList.forEach((currentPopup) => {
 
 //  Форма добавления места: массив с названиями и ссылками из полей формы //
 const createCardForm = (evt) => {
-  evt.preventDefault(); 
+  evt.preventDefault();
   const card = {};
   card.link = placeLinkInput.value;
   card.name = placeNameInput.value;
   gallery.prepend(createCard(card));
   formCreateCard.reset();
-  const submitBtn = formCreateCard.querySelector('.popup__submit');
-  submitBtn.setAttribute('disabled', true);
+/* Пробовал сделать через вызов disableButton, но явно надо ее поставить в видимость внутри этой функции */
+/*  console.log(validateCfg, buttonElement); */
+/*  disableButton(validateCfg, buttonElement) */
+const submitBtn = formCreateCard.querySelector('.popup__submit');
+  setAttribute('disabled', true);
   submitBtn.classList.add('popup__submit_invalid');
   closePopup(popupAdd);
 };
