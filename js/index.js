@@ -17,7 +17,10 @@ const elementTemplate = document.querySelector('#elementTemplate').content;
 const formCreateCard = document.querySelector('#formAddPlace');
 const placeNameInput = document.querySelector('.popup__input_place_name');
 const placeLinkInput = document.querySelector('.popup__input_place_link');
-const btnCreate = document.querySelector('#btnPopupAddPlaceSubmit');
+const btnCreateSubmit = document.querySelector('#btnPopupAddPlaceSubmit');
+/* Кнопка Submit 
+const submitBtn = formCreateCard.querySelector('.popup__submit');
+*/
 
 //  Попап открытия карточки места //
 const popupElement = document.querySelector('#popupElement');
@@ -79,7 +82,6 @@ popupList.forEach((currentPopup) => {
   closeByEsc(currentPopup);
 });
 
-
 //  Форма добавления места: массив с названиями и ссылками из полей формы //
 const createCardForm = (evt) => {
   evt.preventDefault();
@@ -88,12 +90,7 @@ const createCardForm = (evt) => {
   card.name = placeNameInput.value;
   gallery.prepend(createCard(card));
   formCreateCard.reset();
-/* Пробовал сделать через вызов disableButton, но явно надо ее поставить в видимость внутри этой функции */
-/*  console.log(validateCfg, buttonElement); */
-/*  disableButton(validateCfg, buttonElement) */
-  const submitBtn = formCreateCard.querySelector('.popup__submit');
-  submitBtn.setAttribute('disabled', true);
-  submitBtn.classList.add('popup__submit_invalid');
+  disableButton(validationConfig, btnCreateSubmit)
   closePopup(popupAdd);
 };
 
