@@ -12,10 +12,12 @@ export default class FormValidator {
     this._submitButton = formElement.querySelector(validateCfg.submitButtonSelector);
     this._inactiveButtonClass = validateCfg.inactiveButtonClass;
     this._inputErrorClass = validateCfg.inputErrorClass;
-}
-
+    this._errorClass = validateCfg.errorClass;
+  }
+  
   //  публичный для включения валидации форм  //
   enableValidation() {
+/*    this._inputErrorClass = validateCfg.inputErrorClass;  */
     this._checkFormValidity();
   };
 
@@ -76,9 +78,33 @@ export default class FormValidator {
     return (inputObj.input.validity.valid);
   };
 
+    //  публичный для скрытия ошибок (вызов в index.js)  //
+    hideErrors() {
+      this._inputList.forEach((inputElement) => {
+        const inputObj = {
+          input: inputElement,
+          errorSpan: this._validateForm.querySelector(`.${inputElement.id}-error`)
+        };
+        this._hideInputError(inputObj);
+      });
+    };
+  
+    //  публичный для показа ошибок  //
+    showErrors() {
+      this._inputList.forEach((inputElement) => {
+        const inputObj = {
+          input: inputElement,
+          errorSpan: this._validateForm.querySelector(`.${inputElement.id}-error`)
+        };
+        this._showInputError(inputObj);
+      });
+    };
+   
   //  приватный для показа спана с ошибкой при невалидном инпуте  //
   _showInputError(inputObj) {
     inputObj.input.classList.add(this._inputErrorClass);
+    inputObj.input.classList.add(this._inputErrorClass);
+    inputObj.errorSpan.classList.add(this._errorClass);
     inputObj.errorSpan.textContent = inputObj.input.validationMessage;
   };
 
@@ -86,73 +112,7 @@ export default class FormValidator {
   _hideInputError(inputObj) {
     inputObj.input.classList.remove(this._inputErrorClass);
     inputObj.errorSpan.textContent = '';
+    inputObj.errorSpan.classList.remove(this._errorClass);
   };
 
-  //  публичный для скрытия ошибок (вызов в index.js)  //
-  hideErrors() {
-    this._inputList.forEach((inputElement) => {
-      const inputObj = {
-        input: inputElement,
-        errorSpan: this._validateForm.querySelector(`.${inputElement.id}-error`)
-      };
-      this._hideInputError(inputObj);
-    });
-  };
-
-
-  
-  /* Находим инпут с ошибкой в _checkFormValidity  //
-  _getErrorElement(inputElement) {
-    this._errorElement = this._form.querySelector(`.${inputElement.id}-input-error`);
-    return this._errorElement;
-  }
-  */
-
-//  Не добавляем здесь слушателей  // 
-/*  _setEventListeners() {
-    this._toggleButtonState();
-
-    this._inputList.forEach((inputElement) => {
-      inputElement.addEventListener('input', () => {
-        this._checkInputValidity(inputElement);
-        this._toggleButtonState();
-      });
-    });
-  }
-  */
-
-  /*  проверку поменяли 
-  _hasInvalidInput() {
-    return this._inputList.some((input) => !input.validity.valid);
-  }
-  */
-
-  /*
-  _toggleButtonState() {
-    if (this._hasInvalidInput()) {
-      this._submitButtonElement.classList.add(this._inactiveButtonClass);
-      this._submitButtonElement.setAttribute('disabled', 'true');
-    } else {
-      this._submitButtonElement.classList.remove(this._inactiveButtonClass);
-      this._submitButtonElement.removeAttribute('disabled');
-    }
-  }
-  */
-
-  /*
-  resetValidation() {
-    this._toggleButtonState();
-
-    this._inputList.forEach((input) => {
-      this._hideInputError(input);
-    });
-  }
-  */
-
-  /* Включаем в начале
-  enableValidation() {
-    this._validateForm.addEventListener('submit', (evt) => evt.preventDefault());
-    this._setEventListeners();
-  }
-  */
 }
