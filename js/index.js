@@ -1,8 +1,13 @@
-// Кнопки в профиле //
+// Импортируем классы  //
+// До ревью без констант import { initialCards, validateConfig } from "./constants.js";  //
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
+//  Кнопки в профиле  //
 const btnEdit = document.querySelector('.profile__button-edit');
 const btnAdd = document.querySelector('.profile__button-add');
 
-//   Попап редактирования профиля //
+//   Попап редактирования профиля  //
 const popupEdit = document.querySelector('#popupProfile');
 const formProfile = document.querySelector('#formProfileEdit');
 const nameInput = document.querySelector('.popup__input_user_name');
@@ -13,88 +18,135 @@ const profileJob = document.querySelector('.profile__job');
 //  Попап добавления нового места //
 const popupAdd = document.querySelector('#popupAddPlace');
 const gallery = document.querySelector('.elements');
-const elementTemplate = document.querySelector('#elementTemplate').content;
 const formCreateCard = document.querySelector('#formAddPlace');
 const placeNameInput = document.querySelector('.popup__input_place_name');
 const placeLinkInput = document.querySelector('.popup__input_place_link');
 const btnCreateSubmit = document.querySelector('#btnPopupAddPlaceSubmit');
-/* Кнопка Submit 
-const submitBtn = formCreateCard.querySelector('.popup__submit');
-*/
+
+/* const elementTemplate = document.querySelector('#element-template').content; // пока не используется*/
 
 //  Попап открытия карточки места //
-const popupElement = document.querySelector('#popupElement');
-const popupImage = popupElement.querySelector('.popup__image');
-const popupImageCaption = popupElement.querySelector('.popup__image-caption');
-const imgElements = document.querySelectorAll('.element__image');
+export const popupElement = document.querySelector('#popupElement');
+export const popupImage = popupElement.querySelector('.popup__image');
+export const popupImageCaption = popupElement.querySelector('.popup__image-caption');
+
+//  Глобальные константы  //
+const page = document.querySelector('.page');
 
 // Все попапы в документе //
 const popupList = Array.from(document.querySelectorAll('.popup'));
 
-//  Кнопка закрытия попапа //
+//  Все кнопки закрытия попапов //
 const btnsClose = document.querySelectorAll('.popup__close');
 
-//  Функция открытия попапа - добавляем класс и подписку на события //
-function openPopup(popup) {
+//  Все картинки карточек  //
+const imgElements = document.querySelectorAll('.element__image');
+
+//  Исходный набор карточек  //
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  },
+  {
+    name: 'Карачаевск',
+    link: 'https://kirillchistov.github.io/mesto/images/karachaevsk.jpg'
+  },
+  {
+    name: 'Гора Эльбрус',
+    link: 'https://kirillchistov.github.io/mesto/images/elbrus.jpg'
+  },
+  {
+    name: 'Домбай',
+    link: 'https://kirillchistov.github.io/mesto/images/dombai.jpg'
+  }
+];
+
+//  Селекторы для валидации форм  //
+export const validateConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  inputFieldSet: '.popup__fieldset',
+  submitButtonSelector: '.popup__submit',
+  inactiveButtonClass: 'popup__submit_invalid',
+  inputErrorClass: 'popup__field-error_type',
+  errorClass: 'popup__field-error_active'
+};
+
+//  Создаем пустой объект для инициализации переменной FormValidators //
+const formValidators = {};
+
+//  Ищем открытый попап по наличию класса  //
+const getOpenedPopup = () => {
+  return page.querySelector('.popup_opened');
+};
+
+//  Функция открытия попапа - добавляем класс, вешаем слушатель  //
+export const openPopup = (popup) => {
   popup.classList.add('popup_opened');
-  clearPopupFormErrors(popup);
-  document.addEventListener('keydown', closeByEsc);
-  popup.addEventListener('mousedown', closeByOverlay);
-}
+  document.addEventListener('keydown', closeByKeydown);
+};
 
-//  Функция закрытия попапа - удаляем класс и подписку на события //
-function closePopup(popup) {
+//  Функция закрытия попапа - удаляем класс и слушатель  //
+const closePopup = (popup) => {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByEsc);
-  popup.removeEventListener('mousedown', closeByOverlay);
-}
+  document.removeEventListener('keydown', closeByKeydown);
+};
 
-//  Функция закрытия попапа - удаляем класс и подписку на события //
-const editProfile = (popup) => {
-  openPopup(popup);
+//  Закрытие нажатием на Escape  //
+const closeByKeydown = (evt) => {
+  if (evt.key === 'Escape') {
+    const openedPopup = getOpenedPopup();
+    closePopup(openedPopup);
+  }
+};
+
+//  Открытие попапов с формами  //
+
+//  редактирование профиля с текущими данными, ошибки скрыты, кнопка активна  //
+function openPopupEdit() {
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
+  formEditValidator.hideErrors();
+  formEditValidator.activateSubmitButton();
+  openPopup(popupEdit);
 };
 
-// Закрытие нажатием на Escape //
-function closeByEsc(evt) {
-  if (evt.key === "Escape") {
-    closePopup(document.querySelector('.popup_opened'));
-  }
-}
-
-// Закрытие нажатием на overlay //
-function closeByOverlay(popup) {
-  document.addEventListener('mousedown', (evt) => {
-      if (evt.target === evt.currentTarget) {
-          closePopup(popup);
-      }
-  });
+//  создание карточки места с настройками из шаблона  //
+const openPopupAdd = () => {
+  openPopup(popupAdd);
 };
 
-//  Закрытие по клику за пределами попапа для всех попапов //
-popupList.forEach((currentPopup) => {
-  closeByOverlay(currentPopup);
-});
+//  Субклассы для валидации форм на основе импортного класса FormValidator  //
+const formEditValidator = new FormValidator(validateConfig, formProfile);
+formEditValidator.enableValidation();
 
-//  Закрытие по Esc для всех попапов //
-popupList.forEach((currentPopup) => {
-  closeByEsc(currentPopup);
-});
+const formAddValidator = new FormValidator(validateConfig, formCreateCard);
+formAddValidator.enableValidation();
 
-//  Форма добавления места: массив с названиями и ссылками из полей формы //
-const createCardForm = (evt) => {
-  evt.preventDefault();
-  const card = {};
-  card.link = placeLinkInput.value;
-  card.name = placeNameInput.value;
-  gallery.prepend(createCard(card));
-  formCreateCard.reset();
-  disableButton(validationConfig, btnCreateSubmit)
-  closePopup(popupAdd);
-};
+//  Обработчики  форм  //
 
-//  Обработка события сохранения изменений в профиле с отменой перезагрузки //
+//  сохранение данных профиля с отменой перезагрузки, сохранением данных из полей ввода  //
 const handleSubmitProfileForm = (evt) => {
   evt.preventDefault();
   profileName.textContent = nameInput.value;
@@ -102,81 +154,74 @@ const handleSubmitProfileForm = (evt) => {
   closePopup(popupEdit);
 };
 
-//  Закрытие попапов - обработка клика по кнопке "x" ближайшего попапа //
-const handleClickClosePopup = (evt) => {
-  closePopup(evt.target.closest('.popup'));
+//  добавление новой карточки с отменой перезагрузки, сохранением данных карточки  //
+//  затем генерируем и вставляем карточку, очищаем поля ввода, деактивируем кнопку  //
+const handleSubmitAddPlace = (evt) => {
+  evt.preventDefault();
+  const cardData = {
+    name: placeNameInput.value,
+    link: placeLinkInput.value
+  };
+  insertCard(generateCard(cardData));
+  formCreateCard.reset();
+  formAddValidator.deactivateSubmitButton();
+  closePopup(popupAdd);
 };
 
-//  Открытие попапа с картинкой //
-const openImagePopup = (image) => {
-  image.querySelector('.element__image').addEventListener('click', evt => {
-    popupImage.src = '';
-    popupImage.src = evt.target.src;
-    popupImage.alt = evt.target.alt;
-    popupImage.title = evt.target.alt;
-    popupImageCaption.textContent = evt.target.alt;
-    openPopup(popupElement);
+//  добавление карточки из шаблона класса Card  //
+const generateCard = (cardData) => {
+  const card = new Card(cardData, '#element-template');
+  return card.createCardElement();
+};
+
+//  вставка карточки в начало разметки  //
+const insertCard = (cardElement) => {
+  gallery.prepend(cardElement);
+};
+
+//  вставка дефолтного блока карточек  //
+const initCards = () => {
+  initialCards.forEach((cardData) => {
+    const cardElement = generateCard(cardData);
+    insertCard(cardElement);
   });
 };
 
-//  Функция очистки ошибок в форме при открытии попапа //
-function clearPopupFormErrors(popup) {
-  const popupForm = popup.querySelector('.popup__form');
-  if (!popupForm) {
-    return popupForm;
-  } else {
-    popupForm.querySelectorAll('.popup__input').forEach(function(input) {
-      input.classList.remove('popup__field-error_type');
-    });
-  }
-  popupForm.querySelectorAll('.popup__field-error').forEach(function(errorItem) {
-      errorItem.classList.remove('popup__field-error_active');
-      errorItem.textContent = '';
-  });
-};
+//  СЛУШАТЕЛИ СОБЫТИЙ  //
+//  кнопка редактирования профиля в профиле  //
+btnEdit.addEventListener('click', openPopupEdit);
 
-//  Удаление карточки места  //
-const deleteItem = (item) => {
-  item.querySelector('.element__button-delete').addEventListener('click', evt => {
-    evt.target.closest('.element').remove();
-  });
-};
+//  кнопка "+" добавления карточки места в профиле  //
+btnAdd.addEventListener('click', openPopupAdd);
 
-//  Изменение кнопки Like  при клике //
-const toggleLike = (item) => {
-  item.querySelector('.element__button-like').addEventListener('click', evt => {
-    evt.target.classList.toggle('element__button-like_active');
-  })
-};
-
-//  Создание карточки: клон элемента из шаблона, добавление названия и ссылки //
-const createCard = (card) => {
-  const galleryItem = elementTemplate.querySelector('.element').cloneNode(true);
-  const elementItem = galleryItem.querySelector('.element__image');
-  galleryItem.querySelector('.element__title').textContent = card.name;
-  elementItem.src = card.link;
-  elementItem.alt = card.name;
-  toggleLike(galleryItem);
-  deleteItem(galleryItem);
-  openImagePopup(galleryItem);
-  return galleryItem;
-};
-
-//  Вставка массива карточек, доступных по умолчанию //
-initialCards.forEach((card) => {
-  const cardItem = createCard(card);
-  gallery.prepend(cardItem);
-});
-
-//  Подписка на события отправки форм профиля и Нового места //
+//  кнопка сохранения в попапе формы профиля  //
 formProfile.addEventListener('submit', handleSubmitProfileForm);
-formCreateCard.addEventListener('submit', createCardForm);
 
-//  Подписка на события кликов по кнопкам в профиле: //
-btnEdit.addEventListener('click', () => editProfile(popupEdit));
-btnAdd.addEventListener('click', () => openPopup(popupAdd));
+//  кнопка сохранения в попапе создания новой карточки  //
+formCreateCard.addEventListener('submit', handleSubmitAddPlace);
 
-//  Подписка на событие клика по кнопке "x" //
-btnsClose.forEach(button => {
-  button.addEventListener('click', handleClickClosePopup);
+//  все попапы - для закрытия по оверлею или клику на кнопку "x")  //
+popupList.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
+      closePopup(popup)
+    }
+  });
 });
+
+//  вызов вставки дефолтного блока карточек  //
+initCards();
+
+
+//  Открытие попапа с картинкой  //
+/* 
+const openImagePopup = (link, title) => {
+/* /*  image.querySelector('.popup__image').addEventListener('click', evt => { */ 
+/*  popupImage.src = '';
+  popupImage.src = link;
+  popupImage.alt = title;
+  popupImage.title = title;
+  popupImageCaption.textContent = title;
+  openPopup(popupElement);
+/*  }); */
+/* }; */

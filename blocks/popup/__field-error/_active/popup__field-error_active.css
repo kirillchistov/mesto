@@ -2,4 +2,5 @@
   opacity: 1;
   display: block;
   border-bottom-color: red;
+  visibility: visible;
 }

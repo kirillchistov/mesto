@@ -1,4 +1,4 @@
-const validationConfig = {
+const validateConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   inputFieldSet: '.popup__fieldset',
@@ -87,4 +87,4 @@ const enableValidation = (validateCfg) => {
 };
 
 // Включаем функцию с валидацией, передавая ей конфиг с картой классов
-enableValidation(validationConfig);
+enableValidation(validateConfig);

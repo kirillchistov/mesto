@@ -24,15 +24,15 @@
         </div>
         <div class="profile__info">
           <div class="profile__user">
-            <h1 class="profile__name">Наив Кустов</h1>
+            <h1 class="profile__name">Полив Кустов</h1>
             <button class="profile__button profile__button-edit" type="button" aria-label="Редактировать профиль"></button>         
           </div>
-          <p class="profile__job">Исследователь океанариумов</p>
+          <p class="profile__job">Исследователь дендрариумов</p>
         </div>
         <button class="profile__button profile__button-add" type="button" aria-label="Добавить место"></button>
       </section>
 
-      <!-- В галерее будет замена карточек 4-6, в будущем - CRUD карточек -->
+      <!-- В галерею подставляется дефольный набор карточек 4-6, их можно удалять добавлять новые -->
       <section class="gallery">
         <ul class="elements">
 
@@ -48,7 +48,7 @@
     <!--  Поп-ап с формой редактирования профиля -->
     <div class="popup" id="popupProfile">
       <div class="popup__container">
-        <button class="popup__close" type="button" aria-label="Закрыть" id="btnPopupProfileClose"></button>
+        <button class="popup__close popup__close_edit-profile" type="button" aria-label="Закрыть" id="ButtonPopupProfileClose"></button>
         <h2 class="popup__header">Редактировать профиль</h2>
         <form class="popup__form popup__form_profile" name="profileEdit" id="formProfileEdit" novalidate>
           <fieldset class="popup__fieldset">
@@ -82,7 +82,6 @@
     <!--  / Поп-ап для просмотра карточки места -->
 
 
-
     <!--  Поп-ап с формой добавления нового места -->
     <div class="popup" id="popupAddPlace">
       <div class="popup__add-place">
@@ -102,7 +101,7 @@
                 <span class="popup__field-error new-card-source-error">Введите URL картинки</span>
               </label>
               <input class="popup__submit popup__button" type="submit" value="Сохранить" id="btnPopupAddPlaceSubmit"
-                     name="new-card-save-btn" disabled >
+                     name="new-card-save-Button" disabled >
             </fieldset>
           </form>
         </div>
@@ -111,7 +110,7 @@
     <!-- / Поп-ап с формой добавления нового места -->
 
     <!-- Шаблон карточки места (элемент списка) -->
-    <template class="element-template" id="elementTemplate">
+    <template class="element__template" id="element-template">
       <li class="element">
         <button class="element__button-delete" type="button"></button>
         <img class="element__image" src="https://kirillchistov.github.io/mesto/images/elbrus.jpg" alt="Одно из любимых мест">
@@ -119,14 +118,11 @@
         <button class="element__button-like" type="button" aria-label="Поделиться с друзьями"></button>
       </li>
     </template>
-
     <!-- / Шаблон карточки галереи (элемент списка) -->
 
-
-    <!-- Вызываем скрипт и молимся -->
-    <script src="./js/validate.js"></script>
-    <script src="./js/cards.js"></script>
-    <script src="./js/index.js"></script>
+    <!-- Перенесли вызов скриптов импортом из validate.js и cards.js внутри index.js -->
+    <!-- Добавляем модульный тип для index.js -->
+    <script src="./js/index.js" type="module"></script>
   </body>
 
 </html>
