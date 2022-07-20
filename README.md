@@ -14,12 +14,10 @@
 
 **Интро**
 * Проект "Место" - интерактивная фотогалерея путешественника
-``` 
-Актуальная версия проекта на [GH Pages](https://kirillchistov.github.io/mesto/index.html).
-```
+* [Приложение на GH Pages](https://kirillchistov.github.io/mesto/index.html)
 
 **Стек (Что будем использовать)**
-- HTML, CSS (БЭМ, адаптив Flex + Grid)
+- HTML, CSS (БЭМ, Nested, адаптив Flex + Grid)
 - JavaScript (позже React, WebPack и т.п.)
 
 **Макет**
@@ -28,7 +26,7 @@
 * [Figma для ПР6](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1)
 
 **Картинки**
-* Взяты из маркета в Фигме и UnSplash.
+* Взяты из макета в Фигме и UnSplash.
 * [Оптимизируем через TinyPNG](https://tinypng.com/), чтобы ускорить загрузку сайта.
 
 **Верстка ПР4**
@@ -52,42 +50,46 @@
 * [x] [Чек-лист ПР5](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-5.pdf)
 
 **Разработка ПР6**
-* [x] Валидация формы «Редактировать профиль» [см. макет в Figma](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1) - done
-* [x] Валидация формы «Новое место» - done
-* [x] Закрытие попапа кликом на оверлей - done
-* [x] Закрытие попапа нажатием на Esc - done
+* [x] Валидация формы «Редактировать профиль» [см. макет в Figma](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=0%3A1) 
+* [x] Валидация формы «Новое место»
+* [x] Закрытие попапа кликом на оверлей
+* [x] Закрытие попапа нажатием на Esc
 * [x] Учесть [требования к коду валидации форм](https://practicum.yandex.ru/learn/web/courses/35d951a1-b62c-4a96-96ac-a8118657fad0/sprints/34081/topics/43fd3acc-ab09-42b0-9a1a-478423a2650a/lessons/e42c1359-1e14-4586-bb92-ad1b44c6e0c4/) 
 * [x] [Чек-лист ПР6](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-6.pdf)
 
 **Рефакторинг ПР7**
-* [x] 1.  Создать класс Card (создает карточку с текстом и ссылкой на изображение) - in progress
+* [x] 1.  Создать класс Card (создает карточку с текстом и ссылкой на изображение)
 - [x] 1.1 конструктор класса принимает её данные и селектор её template-элемента;
 - [x] 1.2 класс содержит приватные методы, которые работают с разметкой, устанавливают слушатели событий;
 - [x] 1.3 класс содержит приватные методы для каждого обработчика;
 - [x] 1.4 класс содержит один публичный метод, который возвращает полностью работоспособный и наполненный данными элемент карточки.
 * [x] 2.  Для каждой карточки создать экземпляр класса Card  
-* [x] 3.  Создать класса FormValidator (настраивает валидацию полей формы); - in progress
+* [x] 3.  Создать класса FormValidator (настраивает валидацию полей формы);
 - [x] 3.1 принимает в конструктор объект настроек с селекторами и классами формы;
 - [x] 3.2 принимает вторым параметром элемент той формы, которая валидируется;
 - [x] 3.3 имеет приватные методы, которые обрабатывают форму: проверяют валидность поля, изменяют состояние кнопки сабмита, устанавливают все обработчики;
 - [x] 3.4 имеет публичный метод enableValidation, который включает валидацию формы.
-* [x] 4  Для каждой проверяемой формы создать экземпляр класса FormValidator - in progress
-* [x] 5  Разбить JS на модули (3 js-файла) - done
+* [x] 4  Для каждой проверяемой формы создать экземпляр класса FormValidator
+* [x] 5  Разбить JS на модули (3 js-файла)
 - [x] 5.1 Card.js с кодом класса Card,
 - [X] 5.2 FormValidator.js с кодом класса FormValidator,
 - [X] 5.3 index.js со всем остальным кодом.
 - [X] 5.4  Классы Card и FormValidator экспортируются из соответствующих файлов, импортируются в index.js и используются в нём.
 - [X] 5.5  Отдельные js-файлы подключены в index.html как модули
-- [X] 5.6  Объединить обработчики кликов мыши (x, overlay) для закрытия попапов - done
-* [X] 6.  Установка локального сервера через VSCode Live Serve - done
-* [ ] 7.  [Проверить по Чек-листу ПР7](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-7.pdf)
+- [X] 5.6  Объединить обработчики кликов мыши (x, overlay) для закрытия попапов
+* [X] 6.  Установка локального сервера через VSCode Live Serve
+* [X] 7.  [Проверить по Чек-листу ПР7](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-7.pdf)
 
 **Общий чек-лист**
 * Отформатировать код [в VSCode](https://codengineering.ru/q/how-do-you-format-code-in-visual-studio-code-vscode-27090) или [онлайн-сервисом](https://webformatter.com/). См. [styleguide](https://code.s3.yandex.net/frontend-developer/landings/layout-design-rules/index.html)
 
-**Доработки ПР6**
-* Поправить критичные ошибки по комментариям ревьюера - done
-* Придумать решение с rest массива (...) - not done
+**BackLog Доработки ПР6 - ПР7**
+* [ ] ПР5+ [Документация по JSDOC](https://jsdoc.app/about-getting-started.html)
+* [ ] ПР6: [Придумать решение с rest массива (...)](https://practicum.yandex.ru/learn/web/courses/35d951a1-b62c-4a96-96ac-a8118657fad0/sprints/34081/topics/43fd3acc-ab09-42b0-9a1a-478423a2650a/lessons/e42c1359-1e14-4586-bb92-ad1b44c6e0c4/)
+* [ ] ПР7: [Использовать мягкое связывание в Card.js для открытия карточки](https://practicum.yandex.ru/learn/web/courses/370a2c73-45bf-439f-a747-ef4e3c0db48f/sprints/16601/topics/47de79ed-56e5-4e6b-b08c-36d583dcaf4d/lessons/e7a2fc07-b2c0-4b44-bbd9-ed4c2a34f369/)
 
-**Доработки ПР7**
-* Поправить ошибки по ревью - not started
+
+**Доработки ПР8**
+* [ ] Поправить ошибки по ревью - not started
+
+* [Посмотреть страницу приложения](https://kirillchistov.github.io/mesto/index.html)
