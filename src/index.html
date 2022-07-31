@@ -6,21 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="Россия, Место, JS, Яндекс, Практикум">
-    <meta name="description" content="Mesto | ПР7 | Яндекс Практикум">
+    <meta name="description" content="Mesto | ПР8 | Яндекс Практикум">
     <meta name="author" content="Кирилл Чистов">
-    <link rel="stylesheet" href="./pages/index.css">
-    <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-    <title>Проект Mesto. (Я. Практикум / JS / Sprint 5)</title>
+
+    <!-- Отключаем вызов index.css, т.к. будет вызов через webpack -->
+    <!--    <link rel="stylesheet" href="./pages/index.css"> -->
+    <!--    <link rel="icon" type="image/x-icon" href="./images/favicon.ico">  -->
+    <title>Проект Mesto. (Я. Практикум / JS / Sprint 8)</title>
   </head>
+
+  <!-- Пути всех картинок делаем через require, ятобы подгрузить через webpack -->
 
   <body class="page">
     <header class="header">
-      <img class="header__logo" src="./images/logo.svg" alt="Логотип проекта Место">
+      <img class="header__logo" src="<%=require('./images/logo.svg') %>" alt="Логотип проекта Место">
     </header>
     <main class="content">
       <section class="profile">
         <div class="profile__image">
-          <img class="profile__avatar" src="./images/avatar.jpg" alt="Наив Кустов - исследователь океанариумов">
+          <img class="profile__avatar" src="<%=require('./images/avatar.jpg') %>" alt="Наив Кустов - исследователь океанариумов">
         </div>
         <div class="profile__info">
           <div class="profile__user">
@@ -53,12 +57,12 @@
         <form class="popup__form popup__form_profile" name="profileEdit" id="formProfileEdit" novalidate>
           <fieldset class="popup__fieldset">
             <label class="popup__label">
-              <input class="popup__input popup__input_user_name" type="text" id="profile-name" 
+              <input class="popup__input popup__input_user_name" type="text" name="profileName" id="profile-name" 
                      required minlength="2" maxlength="40" placeholder="Автор">
               <span class="popup__field-error profile-name-error">Введите имя пользователя</span>
             </label>
             <label class="popup__label">
-              <input class="popup__input popup__input_user_job" type="text" id="profile-job" 
+              <input class="popup__input popup__input_user_job" type="text" name="profileJob" id="profile-job" 
                      required minlength="2" maxlength="200" placeholder="Профессия">
               <span class="popup__field-error profile-job-error">Введите профиль пользователя</span>
             </label>
@@ -114,15 +118,14 @@
       <li class="element">
         <button class="element__button-delete" type="button"></button>
         <img class="element__image" src="https://kirillchistov.github.io/mesto/images/elbrus.jpg" alt="Одно из любимых мест">
-        <h2 class="element__title popup__image-caption"></h2>
+        <h2 class="element__title"></h2>
         <button class="element__button-like" type="button" aria-label="Поделиться с друзьями"></button>
       </li>
     </template>
     <!-- / Шаблон карточки галереи (элемент списка) -->
 
-    <!-- Перенесли вызов скриптов импортом из validate.js и cards.js внутри index.js -->
-    <!-- Добавляем модульный тип для index.js -->
-    <script src="./js/index.js" type="module"></script>
+    <!-- Отключаем вызов index.js, т.к. будет вызов через webpack -->
+   <!--  <script src="./js/index.js" type="module"></script>  -->
   </body>
 
 </html>
