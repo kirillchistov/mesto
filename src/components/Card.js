@@ -36,16 +36,6 @@ export default class Card {
     return this._element;
   }
 
-  //  приватный для открытия попапа карточки пока не работает //
-  /* _openPopupElement() {
-    popupImage.src = this._link;
-    popupImage.alt = this._name;
-    popupImageCaption.textContent = this._name;
-    openPopup(popupElement);
-  }
-  */
-
-
   // приватный (_setEventListeners) слушает клики по иконкам "сердечко" и "корзина"  //
   _setEventListeners() {
     this._likeButton = this._element.querySelector('.element__button-like');
