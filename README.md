@@ -90,7 +90,7 @@
 * [x] 7. Создать файл .gitignore
 * [x] 8. Реализовать связь классов передачей в конструктор функции - колбэка
 * [x] 9. Настроить сборку Вебпаком
-* [ ] [Чек-лист ПР8](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-8.pdf)
+* [x] [Чек-лист ПР8](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-8.pdf)
 
 **Общий чек-лист**
 * Отформатировать код [в VSCode](https://codengineering.ru/q/how-do-you-format-code-in-visual-studio-code-vscode-27090) или [онлайн-сервисом](https://webformatter.com/). См. [styleguide](https://code.s3.yandex.net/frontend-developer/landings/layout-design-rules/index.html)
@@ -101,7 +101,11 @@
 * [x] ПР7: [Использовать мягкое связывание в Card.js для открытия карточки](https://practicum.yandex.ru/learn/web/courses/370a2c73-45bf-439f-a747-ef4e3c0db48f/sprints/16601/topics/47de79ed-56e5-4e6b-b08c-36d583dcaf4d/lessons/e7a2fc07-b2c0-4b44-bbd9-ed4c2a34f369/)
 
 
-**Доработки ПР8**
-* [ ] Поправить ошибки по ревью - not started
+**Доработки по ревью ПР8**
+* [x] Передавать в конструкторы селекторы, а не константы - in progress
+* [x] Упростить возврат в функциях (убрать лишние константы) - done
+* [x] Поправить названия пакетов в WebPack - done
+* [x] Починить сборку в WebPack - in progress
 
-* [Посмотреть страницу приложения](https://kirillchistov.github.io/mesto/index.html)
+
+* [Страница приложения](https://kirillchistov.github.io/mesto/index.html)

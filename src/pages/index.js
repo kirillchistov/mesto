@@ -16,22 +16,24 @@ import "./index.css";
 import {
   initialCards,
   validateConfig,
-  popupEdit,
+/*  popupEdit, */
   btnEdit,
-  profileName,
-  profileJob,
+/*  profileName,
+  profileJob, */
   nameInput,
   jobInput,
-  popupAdd,
+/*  popupAdd, 
+  placeNameInput,
+  placeLinkInput, */
   btnAdd,
-  gallery,
-  popupElement,
+/*  gallery, */
+/*  popupElement, */
 /*  popupImage, */
   formValidators
 } from "../utils/constants.js";
 
 //  Создаем экземпляр попапа с карточкой  //
-const popupImage = new PopupWithImage(popupElement);
+const popupImage = new PopupWithImage('#popupElement');
 popupImage.setEventListeners();
 
 //  Открываем попап места при клике на фото  //
@@ -39,22 +41,21 @@ const handleCardClick = (link, name) => {
   popupImage.open(link, name);
 };
 
-//  Генерируем карточку (из шаблона)  //
+//  Генерируем карточку (из шаблона) и возвращаем  //
 const createCard = (cardData) => {
-  const card = new Card(cardData, "#element-template", handleCardClick);
-
-  const cardElement = card.createCardElement();
-  return cardElement;
+  const card = new Card(cardData, '#element-template', handleCardClick);
+  return card.createCardElement();
 };
 
 //  Создаем экземпляр секции (рендеринг карточки)  //
-const cardsSection = new Section(
+const cardsSection = new Section( 
   {
+    items: initialCards,
     renderer: (cardData) => {
       cardsSection.addItem(createCard(cardData));
-    },
+    }
   },
-  gallery
+  '.elements'
 );
 
 //  Загружаем  исходный набор карточек  //
@@ -67,18 +68,12 @@ const handleFormAddPlaceSubmit = (cardData) => {
 };
 
 //  Создаем экземпляр попапа с формой для добавления карточки места  //
-const popupNewPlace = new PopupWithForm(
-  popupAdd,
-  handleFormAddPlaceSubmit
-);
+const popupNewPlace = new PopupWithForm('#popupAddPlace', handleFormAddPlaceSubmit);
 popupNewPlace.setEventListeners();
 
 
 //  Создаем экземпляр класса UserInfo с данными профиля  //
-const profileInfo = new UserInfo({
-  profileName: profileName,
-  profileJob: profileJob
-});
+const profileInfo = new UserInfo('.profile__name', '.profile__job');
 
 //  Обрабатываем сохранение данных профиля  //
 const handleFormProfileSubmit = (userInfo) => {
@@ -87,12 +82,10 @@ const handleFormProfileSubmit = (userInfo) => {
 };
 
 //  Создаем экземпляр попапа профиля  //
-
-const popupProfile = new PopupWithForm(popupEdit, handleFormProfileSubmit);
+const popupProfile = new PopupWithForm('#popupProfile', handleFormProfileSubmit);
 popupProfile.setEventListeners();
 
 //  Включаем валидацию  //
-
 const activateValidation = () => {
   const formList = Array.from(document.querySelectorAll(validateConfig.formSelector));
   formList.forEach((formElement) => {

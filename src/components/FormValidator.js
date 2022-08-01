@@ -35,11 +35,6 @@ export default class FormValidator {
     _hideInputError(inputObj) {
         this._getErrorElement(inputObj);
         if (!this._errorElement) return;
-/*
-        inputObj.input.classList.remove(this._inputErrorClass);
-        inputObj.errorSpan.textContent = '';
-        inputObj.errorSpan.classList.remove(this._errorClass);
-*/
         inputObj.classList.remove(this._inputErrorClass);
         this._errorElement.classList.remove(this._errorClass);
         this._errorElement.textContent = '';
@@ -108,40 +103,7 @@ export default class FormValidator {
           return !input.validity.valid;
       });
     };
-  
-    //  приватный для проверки валидности конкретного инпута  //
-    /*
-    _isInputValid(inputObj) {
-      return (inputObj.input.validity.valid);
-    };
-    */
-  
-    //  публичный для скрытия ошибок (вызов в index.js)  //
-    /*
-    hideErrors() {
-      this._inputList.forEach((inputObj) => {
-        const inputObj = {
-          input: inputObj,
-            errorSpan: this._form.querySelector(`.${inputObj.id}-error`)
-        };
-        this._hideInputError(inputObj);
-      });
-    };
-    */
-    
-    //  публичный для показа ошибок  //
-    /*
-    showErrors() {
-      this._inputList.forEach((inputObj) => {
-        const inputObj = {
-          input: inputElement,
-            errorSpan: this._form.querySelector(`.${inputElement.id}-error`)
-        };
-        this._showInputError(inputObj);
-      });
-    };
-    */
-    
+      
     // публичный для перезапуска валидации  //
     resetValidation() {
       this._toggleSubmitButtonState();

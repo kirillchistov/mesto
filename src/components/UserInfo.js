@@ -1,9 +1,9 @@
 //  Класс UserInfo. Управление отображением инфо о пользователе  //
 
 export default class UserInfo {
-    constructor({ profileName, profileJob }) {
-      this._name = profileName;
-      this._job = profileJob;
+    constructor(profileName, profileJob) {
+      this._name = document.querySelector(profileName);
+      this._job = document.querySelector(profileJob);
     }
 
  //  Возвращаем данные профиля  //    
