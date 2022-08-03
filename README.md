@@ -95,17 +95,18 @@
 **Общий чек-лист**
 * Отформатировать код [в VSCode](https://codengineering.ru/q/how-do-you-format-code-in-visual-studio-code-vscode-27090) или [онлайн-сервисом](https://webformatter.com/). См. [styleguide](https://code.s3.yandex.net/frontend-developer/landings/layout-design-rules/index.html)
 
-**BackLog Доработки ПР6 - ПР7**
+**BackLog Доработки по ПР**
 * [ ] ПР5+ [Документация по JSDOC](https://jsdoc.app/about-getting-started.html)
 * [ ] ПР6: [Придумать решение с rest массива (...)](https://practicum.yandex.ru/learn/web/courses/35d951a1-b62c-4a96-96ac-a8118657fad0/sprints/34081/topics/43fd3acc-ab09-42b0-9a1a-478423a2650a/lessons/e42c1359-1e14-4586-bb92-ad1b44c6e0c4/)
-* [x] ПР7: [Использовать мягкое связывание в Card.js для открытия карточки](https://practicum.yandex.ru/learn/web/courses/370a2c73-45bf-439f-a747-ef4e3c0db48f/sprints/16601/topics/47de79ed-56e5-4e6b-b08c-36d583dcaf4d/lessons/e7a2fc07-b2c0-4b44-bbd9-ed4c2a34f369/)
+* [x] ПР7
+* [x] ПР8
 
 
 **Доработки по ревью ПР8**
-* [x] Передавать в конструкторы селекторы, а не константы - in progress
+* [x] Передавать в конструкторы селекторы, а не константы - done
 * [x] Упростить возврат в функциях (убрать лишние константы) - done
 * [x] Поправить названия пакетов в WebPack - done
-* [x] Починить сборку в WebPack - in progress
+* [x] Починить сборку в WebPack - done
 
 
 * [Страница приложения](https://kirillchistov.github.io/mesto/index.html)
