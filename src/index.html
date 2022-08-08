@@ -25,6 +25,7 @@
       <section class="profile">
         <div class="profile__image">
           <img class="profile__avatar" src="<%=require('./images/avatar.jpg') %>" alt="Наив Кустов - исследователь океанариумов">
+          <div class="profile__avatar-edit"></div>
         </div>
         <div class="profile__info">
           <div class="profile__user">
@@ -66,7 +67,7 @@
                      required minlength="2" maxlength="200" placeholder="Профессия">
               <span class="popup__field-error profile-job-error">Введите профиль пользователя</span>
             </label>
-            <input class="popup__submit popup__button popup__submit_profile" type="submit" value="Сохранить" id="btnPopupProfileSubmit">
+            <input class="popup__submit popup__button form__save-button popup__submit_profile" type="submit" value="Сохранить" id="btnPopupProfileSubmit">
           </fieldset>
         </form>
       </div>
@@ -104,8 +105,8 @@
                        required placeholder="Ссылка на иллюстрацию" name="link" id="new-card-source">
                 <span class="popup__field-error new-card-source-error">Введите URL картинки</span>
               </label>
-              <input class="popup__submit popup__button" type="submit" value="Сохранить" id="btnPopupAddPlaceSubmit"
-                     name="new-card-save-Button" disabled >
+              <input class="popup__submit popup__button form__save-button" type="submit" value="Сохранить" id="btnPopupAddPlaceSubmit"
+                     name="new-card-save-button" disabled >
             </fieldset>
           </form>
         </div>
@@ -113,13 +114,53 @@
     </div>
     <!-- / Поп-ап с формой добавления нового места -->
 
-    <!-- Шаблон карточки места (элемент списка) -->
+    <!-- Поп-ап с формой подтверждения удаления места -->
+    <div class="popup popup__confirm-delete" id="popupConfirmDeletePlace">
+      <div class="popup__container">
+        <h3 class="popup__title">Вы уверены?</h3>
+        <form class="form form__confirm-delete" name="popupConfirmDeletePlace" id="formConfirmDeletePlace">
+          <button class="popup__submit popup__button form__save-button"
+            type="submit" name="delete-confirm-button" value="Да">Да
+          </button>
+        </form>
+        <button class="popup__close popup__close_delete-confirm"
+          type="button" aria-label="Закрыть удаление"></button>
+      </div>
+    </div>
+    <!-- / Поп-ап с формой подтверждения удаления места -->
+
+    <!-- Поп-ап с формой замены аватара -->
+    <!-- Добавить блоки со стилями -->
+    <div class="popup popup_edit-avatar">
+      <div class="popup__container">
+        <form class="form form_edit-avatar" name="editAvatarForm" id="editAvatarForm" novalidate>
+          <h3 class="popup__header popup__header_avatar">Обновить аватар</h3>
+          <fieldset class="popup__fieldset" id="profileEditAvatarFieldset">
+            <label class="popup__label">
+              <input type="url" class="popup__input popup__input_avatar_url"
+                id="edit-avatar-url" name="avatar" placeholder="Введите ссылку на аватар" required >
+              <span class="popup__field-error edit-avatar-url-error">Введите ссылку на аватар</span>
+            </label>
+          </fieldset>
+          <button class="popup__submit popup__button form__save-button" type="submit" 
+            name="popupConfirmEditAvatar" value="Сохранить">Сохранить</button>
+        </form>
+        <button class="popup__close popup__close_edit-avatar"
+          type="button" aria-label="Закрыть обновление аватара"></button>
+      </div>
+    </div>
+  </div>
+
+    <!-- Шаблон карточки места (элемент списка) со счетчиком лайков -->
     <template class="element__template" id="element-template">
       <li class="element">
         <button class="element__button-delete" type="button"></button>
         <img class="element__image" src="https://kirillchistov.github.io/mesto/images/elbrus.jpg" alt="Одно из любимых мест">
         <h2 class="element__title"></h2>
-        <button class="element__button-like" type="button" aria-label="Поделиться с друзьями"></button>
+        <div class="element__like-container">
+          <button class="element__button-like" type="button" aria-label="Поставить лайк"></button>
+          <p class="element__likes-count">1</p>
+        </div>
       </li>
     </template>
     <!-- / Шаблон карточки галереи (элемент списка) -->

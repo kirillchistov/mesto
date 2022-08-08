@@ -12,6 +12,11 @@ export const nameInput = document.querySelector('.popup__input_user_name');
 export const jobInput = document.querySelector('.popup__input_user_job');
 export const profileName = document.querySelector('.profile__name');
 export const profileJob = document.querySelector('.profile__job');
+export const profileAvatar = document.querySelector('.profile__avatar');
+export const btnEditAvatar = document.querySelector(".profile__avatar-edit");
+
+//  Попап редактирования аватара пользователя  //
+export const popupEditAvatar = ".popup_edit-avatar";
 
 //  Попап добавления нового места //
 /* export const popupAdd = document.querySelector('#popupAddPlace'); */
@@ -29,6 +34,9 @@ export const btnCreateSubmit = document.querySelector('#btnPopupAddPlaceSubmit')
 export const popupElement = "#popupElement";
 export const popupImage = document.querySelector(popupElement).querySelector('.popup__image');
 export const popupImageCaption = document.querySelector(popupElement).querySelector('.popup__image-caption');
+
+//  Попап подтверждения удаления карточки  //
+export const popupConfirmDelete = ".popup_you-sure";
 
 //  Глобальные константы  //
 export const page = document.querySelector('.page');
