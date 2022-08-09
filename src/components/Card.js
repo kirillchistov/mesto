@@ -11,9 +11,9 @@ export default class Card {
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardSelector = cardSelector;
-    this._cardId = cardData.userId;
     this._userId = cardData.userId;
     this._ownerId = cardData.ownerId;
+    this._cardId = cardData.cardId;
 //    this._isLiked = false;  //
     this._likes = cardData.likes;
     this._handleCardClick = handleCardClick;
@@ -100,6 +100,7 @@ export default class Card {
   //  Выводим счетчик кликов  //
   setLikesCount(res) {
     this._likesCount.textContent = `${res._likes.length}`;
+    console.log('setLikesCount: ' + res._likes.length);
   }
 
   //  Закрашиваем сердечко после лайка  //

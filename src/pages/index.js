@@ -45,7 +45,7 @@ let userId;
 
 //  Создаем объект для API-доступа к серверу с полученным ключом в заголовке  //
 const api = new Api({
-  url: "https://mesto.nomoreparties.co/v1/cohort-47",
+  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-47",
   headers: {
     authorization: "7a2b5691-9c91-496f-b370-fd3cc1ce7210",
     "Content-Type": "application/json",
@@ -66,12 +66,12 @@ const handleCardClick = (link, name) => {
 const createCard = (cardData) => {
   const card = new Card(
     {
-      cardId: cardData.cardId,
       name: cardData.name,
       link: cardData.link,
       likes: cardData.likes,
-      userId: cardData.userId,
-      ownerId: cardData.ownerId
+      userId: userId,
+      ownerId: cardData.owner._id,
+      cardId: cardData._id
     },
     '#element-template', 
     handleCardClick,

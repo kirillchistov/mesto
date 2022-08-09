@@ -1,9 +1,9 @@
 //  Класс для работы с API. Все запросы должны быть методами этого класса  //
 
-//  В конструкторе получаем url и заголовки запроса  //
+//  В конструкторе получаем baseUrl и заголовки запроса  //
 export default class Api {
-  constructor({ url, headers }) {
-    this._url = url;
+  constructor({ baseUrl, headers }) {
+    this._baseUrl = baseUrl;
     this._headers = headers;
   }
 
@@ -12,25 +12,26 @@ export default class Api {
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
   }
 
-  //  Получаем доступные карточки мест с сервера (вместо локальных)  //
+  //  Получаем доступные карточки мест с сервера методом GET  //
   getCards() {
-    this._cards = fetch(`${this._url}/cards`, {
+    this._cards = fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     }).then(this._handleServerResponse);
+    console.log(this._cards);
     return this._cards;
   }
 
-//  Получаем данные профиля с сервера (вместо локального)  //
+//  Получаем данные профиля с сервера методом GET  //
   getProfile() {
-    this._profileInfo = fetch(`${this._url}/users/me`, {
+    this._profileInfo = fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then(this._handleServerResponse);
     return this._profileInfo;
   }
 
-//  Сохраняем измененные данные профиля на сервере через  PATCH  //
+//  Сохраняем измененные данные профиля на сервере методом PATCH  //
   setProfile(obj) {
-    this._settedProfile = fetch(`${this._url}/users/me`, {
+    this._settedProfile = fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -43,7 +44,7 @@ export default class Api {
 
 //  Сохраняем измененный аватар профиля на сервере через  PATCH  //
   setAvatar(obj) {
-    this._newAvatar = fetch(`${this._url}/users/me/avatar`, {
+    this._newAvatar = fetch(`${this._baseUrl}/users/me/avatar`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -55,7 +56,7 @@ export default class Api {
 
 //  Сохраняем данные о лайках карточки на сервере через  PUT  //
   addLike(obj) {
-    this._like = fetch(`${this._url}/cards/${obj._id}/likes`, {
+    this._like = fetch(`${this._baseUrl}/cards/${obj._id}/likes`, {
       method: "PUT",
       headers: this._headers,
     }).then(this._handleServerResponse);
@@ -64,7 +65,7 @@ export default class Api {
 
 //  Удаляем лайк карточки с сервера через  DELETE  //
   deleteLike(obj) {
-    this._deleteLike = fetch(`${this._url}/cards/${obj._id}/likes`, {
+    this._deleteLike = fetch(`${this._baseUrl}/cards/${obj._id}/likes`, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._handleServerResponse);
@@ -73,7 +74,7 @@ export default class Api {
 
 //  Добавляем новую карточку на сервере через  POST  //
   addCard(obj) {
-    this._addedCard = fetch(`${this._url}/cards`, {
+    this._addedCard = fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
@@ -86,7 +87,7 @@ export default class Api {
 
 //  Удаляем карточку с сервера через  DELETE  //
   deleteCard(id) {
-    this._deletedCard = fetch(`${this._url}/cards/${id}`, {
+    this._deletedCard = fetch(`${this._baseUrl}/cards/${id}`, {
       method: "DELETE",
       headers: this._headers,
     }).then(this._handleServerResponse);
