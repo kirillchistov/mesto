@@ -36,7 +36,7 @@ export const popupImage = document.querySelector(popupElement).querySelector('.p
 export const popupImageCaption = document.querySelector(popupElement).querySelector('.popup__image-caption');
 
 //  Попап подтверждения удаления карточки  //
-export const popupConfirmDelete = ".popup_you-sure";
+export const popupConfirmDelete = "#popupConfirmDeletePlace";
 
 //  Глобальные константы  //
 export const page = document.querySelector('.page');

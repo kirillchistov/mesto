@@ -17,15 +17,16 @@ export default class Card {
 //    this._isLiked = false;  //
     this._likes = cardData.likes;
     this._handleCardClick = handleCardClick;
-    this._handleCardLike = handleCardLike;
-    this._handleCardUnlike = handleCardUnlike;
+    this._handleLikeAdd = handleLike;
+    this._handleRemoveLike = handleRemoveLike;
   }
 
   //  методы для работы с разметкой, установки слушателей событий  //
   
   //  приватный (_getTemplate) клонирует из шаблона и возвращает готовую карточку (cardElement)  //
   _getTemplate() {
-    return cardElement = document.querySelector(this._cardSelector).content.querySelector('.element').cloneNode(true);
+    const element = document.querySelector(this._cardSelector).content.querySelector('.element').cloneNode(true);
+    return element;
   }
 
   //  публичный (createCardElement) добавляет данные, слушателей, возвращает готовую карточку  //
@@ -59,8 +60,8 @@ export default class Card {
 
     this._likeButton.addEventListener('click', () => {
       this._likeButton.classList.contains("element__button-like_active")
-        ? this._handleCardUnlike()
-        : this._handleCardLike();
+        ? this._handleRemoveLike()
+        : this._handleLikeAdd();
     });
 
     this._deleteButton.addEventListener('click', () => {
@@ -98,7 +99,7 @@ export default class Card {
 
   //  Выводим счетчик кликов  //
   setLikesCount(res) {
-    this._likesCount.textContent = `${res.likes.length}`;
+    this._likesCount.textContent = `${res._likes.length}`;
   }
 
   //  Закрашиваем сердечко после лайка  //

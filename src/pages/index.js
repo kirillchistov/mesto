@@ -30,12 +30,18 @@ import {
   placeNameInput,
   placeLinkInput, */
   btnAdd,
-  btnOpenAvatar,
+  btnEditAvatar,
+  
 /*  gallery, */
 /*  popupElement, */
 /*  popupImage, */
+  popupConfirmDelete,
+  popupEditAvatar,
   formValidators
 } from "../utils/constants.js";
+
+//  Объявляем переменную для юзера  //
+let userId;
 
 //  Создаем объект для API-доступа к серверу с полученным ключом в заголовке  //
 const api = new Api({
@@ -78,7 +84,7 @@ const createCard = (cardData) => {
           card.addLike();
         })
         .catch((err) => {
-          console.log('Ошибка. Запрос не выполнен: ' + err);
+          console.log('Ошибка: ' + err);
         })
     },
     () => {
@@ -119,7 +125,7 @@ const handleFormAddPlaceSubmit = (cardData) => {
     popupNewPlace.close();
   })
   .catch((err) => {
-    console.log('Ошибка. Запрос не выполнен: ' + err);
+    console.log('Ошибка: ' + err);
   });
 };
 
@@ -141,7 +147,7 @@ const handlePopupConfirmSubmit = (card) => {
       card.deleteCard();
       popupConfirm.close();
     })
-    .catch((err) => console.log('Ошибка. Запрос не выполнен: ' + err));
+    .catch((err) => console.log('Ошибка: ' + err));
 };
 
 //  Создаем экземпляр класса UserInfo с данными профиля  //
@@ -157,7 +163,7 @@ const handleFormProfileSubmit = (userInfo) => {
       profileInfo.setUserInfo(res);
       popupProfile.close();
     })
-    .catch((err) => console.log('Ошибка. Запрос не выполнен: ' + err));
+    .catch((err) => console.log('Ошибка: ' + err));
 };
 
 //  Создаем экземпляр попапа профиля  //
@@ -176,15 +182,14 @@ const handleFormAvatarSubmit = (obj) => {
       popupAvatar.close();
     })
     .catch((err) => {
-      console.log('Ошибка. Запрос не выполнен: ' + err);
+      console.log('Ошибка: ' + err);
     });
 };
 
 const popupAvatar = new PopupWithForm(popupEditAvatar, handleFormAvatarSubmit);
 popupAvatar.setEventListeners();
 
-//  Создаем переменную (let!) userId, получаем ее и карточки по ней через API (промисом)  //
-let userId;
+//  Получаем значение userId и карточки для этого юзера через API (промисом)  //
 Promise.all([api.getCards(), api.getProfile()])
   .then((value) => {
     userId = value[1]._id;
@@ -192,7 +197,7 @@ Promise.all([api.getCards(), api.getProfile()])
     profileInfo.setUserInfo(value[1]);
   })
   .catch((err) => {
-    console.log('Ошибка. Запрос не выполнен: ' + err);
+    console.log('Ошибка: ' + err);
   });
 
 
@@ -226,8 +231,8 @@ btnAdd.addEventListener("click", () => {
 });
 
 //  Замена аватара пользователя  //
-editAvatarOpenButton.addEventListener("click", () => {
-  formValidators["edit-avatar-form"].resetValidation();
+btnEditAvatar.addEventListener("click", () => {
+  formValidators["editAvatarForm"].resetValidation();
   popupAvatar.handleButtonText(false);
   popupAvatar.open();
 });

@@ -11,8 +11,8 @@ export default class PopupWithForm extends Popup {
     super(popupSelector);
     this._submitHandler = submitHandler;
     this._form = this._popup.querySelector('.popup__form');
-    this._inputList = Array.from(this._form.querySelectorAll('.popup__input'));
-    this._submitButton = this._form.querySelector(".popup__submit");    
+    this._inputList = Array.from(this._popup.querySelectorAll('.popup__input'));
+    this._submitButton = this._popup.querySelector(".popup__submit");    
   }
 
   //  метод для получения и возвращения данных формы  //
@@ -33,17 +33,16 @@ export default class PopupWithForm extends Popup {
     });
   }
 
-//  вызываем родительский метод закрытия и очищаем форму  //
+  //  вызываем родительский метод закрытия и очищаем форму  //
   close() {
     super.close();
     this._form.reset();
   }
 
-//  улучшаем UX - показываем на кнопке текст о том, что идет сохранение данных  //
+  //  улучшаем UX - показываем на кнопке текст о том, что идет сохранение данных  //
   handleButtonText(isLoading) {
     isLoading
       ? (this._submitButton.textContent = "Сохранение...")
       : (this._submitButton.textContent = "Сохранить");
-    }
-  }
+  };
 }

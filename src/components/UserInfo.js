@@ -13,7 +13,7 @@ export default class UserInfo {
           profileName: this._name.textContent,
           profileJob: this._job.textContent,
           profileAvatar: this._avatar.src
-        };
+      };
       return userInfo;
     }
 
@@ -23,6 +23,6 @@ export default class UserInfo {
         this._name.textContent = userInfo.profileName;
         this._job.textContent = userInfo.profileJob;
         this._avatar.src = userInfo.profileAvatar;
-      
-    };
+      }      
+    }
 }
