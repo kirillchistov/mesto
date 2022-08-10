@@ -9,6 +9,7 @@ export default class Api {
 
   //  Обрабатываем ответ сервера и, если не ОК, выводим реджектим с ошибкой  //
   _handleServerResponse(res) {
+/*    console.log(res.json()); */
     return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
   }
 
@@ -17,7 +18,7 @@ export default class Api {
     this._cards = fetch(`${this._baseUrl}/cards`, {
       headers: this._headers,
     }).then(this._handleServerResponse);
-    console.log(this._cards);
+/*    console.log(this._cards); */
     return this._cards;
   }
 
@@ -26,20 +27,23 @@ export default class Api {
     this._profileInfo = fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
     }).then(this._handleServerResponse);
+/*    console.log(`getProfile: ${this._profileInfo}`); */
     return this._profileInfo;
   }
 
 //  Сохраняем измененные данные профиля на сервере методом PATCH  //
   setProfile(obj) {
-    this._settedProfile = fetch(`${this._baseUrl}/users/me`, {
+    console.log(`obj: ${obj.profileName}, ${obj.profileJob},`);
+    this._newProfile = fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: obj.name,
-        about: obj.about,
+        name: obj.profileName,
+        about: obj.profileJob,
       }),
     }).then(this._handleServerResponse);
-    return this._settedProfile;
+/*    console.log(`resStatus: ${res.status}`); */
+    return this._newProfile;
   }
 
 //  Сохраняем измененный аватар профиля на сервере через  PATCH  //
@@ -51,6 +55,7 @@ export default class Api {
         avatar: obj.avatar,
       }),
     }).then(this._handleServerResponse);
+    console.log(`setAvatar - _newAvatar: ${this._newAvatar}`);
     return this._newAvatar;
   }
 
@@ -74,11 +79,12 @@ export default class Api {
 
 //  Добавляем новую карточку на сервере через  POST  //
   addCard(obj) {
+/*    console.log(`addCard to: ${this._baseUrl}/cards with: ${this._headers}, ${obj.name}, ${obj.link}`); */
     this._addedCard = fetch(`${this._baseUrl}/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: obj.title,
+        name: obj.name,
         link: obj.link,
       }),
     }).then(this._handleServerResponse);

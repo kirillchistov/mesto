@@ -18,26 +18,32 @@ import "./index.css";
 
 //  Импортируем все константы из /utils/constants.js  //
 import {
-  initialCards,
   validateConfig,
-/*  popupEdit, */
+/*  
+  initialCards,
+  popupEdit, 
+  profileName,
+  profileJob,
+  profileAvatar,
+*/
   btnEdit,
-/*  profileName,
-  profileJob, */
   nameInput,
   jobInput,
-/*  popupAdd, 
+/*  
+  popupAdd, 
   placeNameInput,
-  placeLinkInput, */
+  placeLinkInput,
+*/
   btnAdd,
   btnEditAvatar,
+  formEditAvatar,
   
 /*  gallery, */
 /*  popupElement, */
 /*  popupImage, */
   popupConfirmDelete,
   popupEditAvatar,
-  formValidators
+  formValidators,
 } from "../utils/constants.js";
 
 //  Объявляем переменную для юзера  //
@@ -68,10 +74,10 @@ const createCard = (cardData) => {
     {
       name: cardData.name,
       link: cardData.link,
+      cardId: cardData._id,
       likes: cardData.likes,
       userId: userId,
-      ownerId: cardData.owner._id,
-      cardId: cardData._id
+      ownerId: cardData.owner._id
     },
     '#element-template', 
     handleCardClick,
@@ -103,7 +109,7 @@ const createCard = (cardData) => {
 //  Создаем экземпляр секции (рендеринг карточки)  //
 const cardsSection = new Section( 
   {
-    items: initialCards,
+/*    items: initialCards, */
     renderer: (cardData) => {
       cardsSection.addItem(createCard(cardData));
     }
@@ -151,12 +157,13 @@ const handlePopupConfirmSubmit = (card) => {
 };
 
 //  Создаем экземпляр класса UserInfo с данными профиля  //
-const profileInfo = new UserInfo('.profile__name', '.profile__job', '.profile__avatar');
+const profileInfo = new UserInfo('.profile__name', '.profile__job','.profile__avatar');
 
 //  Обрабатываем сохранение данных профиля, забираем данные по API  //
 //  Перед обработкой вызова по API показываем пользователю UX-текст  //
 const handleFormProfileSubmit = (userInfo) => {
   popupProfile.handleButtonText(true);
+  console.log(`userInfo: ${userInfo.profileName}, ${userInfo.profileJob}`);
   return api
     .setProfile(userInfo)
     .then((res) => {
@@ -216,8 +223,9 @@ const activateValidation = () => {
 //  Редактирование профиля  //
 btnEdit.addEventListener("click", () => {
   const userInfo = profileInfo.getUserInfo();
-  nameInput.value = userInfo.profileName;
-  jobInput.value = userInfo.profileJob;
+  console.log(userInfo);
+  nameInput.value = userInfo.name;
+  jobInput.value = userInfo.about;
   formValidators["profileEdit"].resetValidation();
   popupProfile.handleButtonText(false);  
   popupProfile.open();
@@ -229,10 +237,9 @@ btnAdd.addEventListener("click", () => {
   popupNewPlace.handleButtonText(false);  
   popupNewPlace.open();
 });
-
 //  Замена аватара пользователя  //
 btnEditAvatar.addEventListener("click", () => {
-  formValidators["editAvatarForm"].resetValidation();
+  formValidators["editAvatar"].resetValidation();
   popupAvatar.handleButtonText(false);
   popupAvatar.open();
 });

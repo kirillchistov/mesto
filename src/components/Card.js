@@ -72,6 +72,7 @@ export default class Card {
   //  приватный - добавляет лайк при клике, если  (вкл./выкл.) при клике на сердечко  //  
   _handleLikeState() {
     this._likes.forEach((user) => {
+/*      console.log(`Card _handleLikeState - user: ${user._id}`); */
       if (user._id === this._userId) {
         this.addLike();
       } else {

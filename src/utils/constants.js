@@ -17,7 +17,7 @@ export const btnEditAvatar = document.querySelector(".profile__avatar-edit");
 
 //  Попап редактирования аватара пользователя  //
 export const popupEditAvatar = ".popup_edit-avatar";
-
+export const formEditAvatar = document.querySelector('#editAvatarForm');
 //  Попап добавления нового места //
 /* export const popupAdd = document.querySelector('#popupAddPlace'); */
 export const popupAdd = "#popupAddPlace";

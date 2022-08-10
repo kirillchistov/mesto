@@ -15,13 +15,13 @@ export default class FormValidator {
       this._inputErrorClass = validateConfig.inputErrorClass;
       this._errorClass = validateConfig.errorClass;
       this._submitButton = this._form.querySelector(this._submitButtonSelector);
-    }
+    };
 
     //  приватный для поиска поля ввода с ошибкой  //     
     _getErrorElement(inputObj) {
       this._errorElement = this._form.querySelector(`.${inputObj.id}-error`);
       return this._errorElement;
-    }
+    };
 
     //  приватный для показа спана с ошибкой при невалидном инпуте  //
     _showInputError(inputObj) {
@@ -55,6 +55,7 @@ export default class FormValidator {
     
     _checkFormValidity() {
       this._inputList.forEach((inputElement) => {
+        console.log(`_checkFormValidity - inputElement: ${inputElement}`);
         const inputObj = {
           input: inputElement,
           errorElement: this._form.querySelector(`.${inputElement.id}-error`)
@@ -95,7 +96,7 @@ export default class FormValidator {
           this._toggleSubmitButtonState();
         });
       });
-    }
+    };
     
     //  приватный для проверки на наличие некорректного инпута в форме  //
     _hasInvalidInput() {
@@ -107,16 +108,15 @@ export default class FormValidator {
     // публичный для перезапуска валидации  //
     resetValidation() {
       this._toggleSubmitButtonState();
-  
+/*      console.log(`resetValidation - this: ${this}`); */
       this._inputList.forEach((input) => {
         this._hideInputError(input);
       });
-    }
+    };
 
     //  публичный для включения валидации форм  //
     enableValidation() {
       this._form.addEventListener('submit', (evt) => evt.preventDefault());
       this._setEventListeners();
-    }
-    
+    };
 }
