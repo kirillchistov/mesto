@@ -167,7 +167,9 @@ const handleFormProfileSubmit = (userInfo) => {
   return api
     .setProfile(userInfo)
     .then((res) => {
+      console.log(res.name);
       profileInfo.setUserInfo(res);
+/*      console.log(`profileInfo: ${profileInfo.setUserInfo(res)}`); */
       popupProfile.close();
     })
     .catch((err) => console.log('Ошибка: ' + err));

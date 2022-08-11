@@ -3,16 +3,16 @@
 export default class Section {
 /*    constructor({ items, renderer }, container) { */
     constructor({ renderer }, container) {
-/*        this._renderedItems = items; */
       this._container = document.querySelector(container);
       this._renderer = renderer;
     }
 
 //  Отрисовываем имеющиеся карточки мест  //    
-    renderItems() {
+    renderItems(items) {
+      this._renderedItems = items;
       this._renderedItems.forEach((item) => {
         this._renderer(item);
-        console.log(`item: ${item}`);
+/*        console.log(`item: ${item}`); */
       });
     };
   
