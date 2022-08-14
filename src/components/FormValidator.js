@@ -55,7 +55,6 @@ export default class FormValidator {
     
     _checkFormValidity() {
       this._inputList.forEach((inputElement) => {
-        console.log(`_checkFormValidity - inputElement: ${inputElement}`);
         const inputObj = {
           input: inputElement,
           errorElement: this._form.querySelector(`.${inputElement.id}-error`)
@@ -108,7 +107,6 @@ export default class FormValidator {
     // публичный для перезапуска валидации  //
     resetValidation() {
       this._toggleSubmitButtonState();
-/*      console.log(`resetValidation - this: ${this}`); */
       this._inputList.forEach((input) => {
         this._hideInputError(input);
       });

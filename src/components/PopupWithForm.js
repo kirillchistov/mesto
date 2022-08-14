@@ -21,7 +21,6 @@ export default class PopupWithForm extends Popup {
     this._inputList.forEach(
       (input) => (this._formValues[input.name] = input.value)
     );
-/*    console.log(`PopupWithForm formValues: ${this._formValues}`); */
     return this._formValues;
   }
 
@@ -41,7 +40,7 @@ export default class PopupWithForm extends Popup {
   }
 
   //  улучшаем UX - показываем на кнопке текст о том, что идет сохранение данных  //
-  handleButtonText(isLoading) {
+  showLoadingButtonText(isLoading) {
     isLoading
       ? (this._submitButton.textContent = "Сохранение...")
       : (this._submitButton.textContent = "Сохранить");

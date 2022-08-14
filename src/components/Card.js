@@ -7,7 +7,7 @@
 //  конструктор принимает данные cardData и селектор шаблона #element-template  //
 //  cardData содержит ссылку и название места  //
 export default class Card {
-    constructor(cardData, cardSelector, handleCardClick, handleDeleteCard, handleLike, handleRemoveLike) {
+    constructor(cardData, cardSelector, handleCardClick, handleCardDelete, handleLike, handleRemoveLike) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._cardSelector = cardSelector;
@@ -19,6 +19,7 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._handleLikeAdd = handleLike;
     this._handleRemoveLike = handleRemoveLike;
+    this._handleCardDelete = handleCardDelete;
   }
 
   //  методы для работы с разметкой, установки слушателей событий  //
@@ -54,25 +55,27 @@ export default class Card {
     this._likeButton = this._element.querySelector('.element__button-like');
     this._deleteButton = this._element.querySelector('.element__button-delete');
 
-    this._imgElement.addEventListener('click', () => {
+//  слушаем клик по карточке (фото)  //
+this._imgElement.addEventListener('click', () => {
       this._handleCardClick(this._link, this._name);
     });
 
-    this._likeButton.addEventListener('click', () => {
+  //  слушаем клик по сердечкку Like  //
+  this._likeButton.addEventListener('click', () => {
       this._likeButton.classList.contains("element__button-like_active")
         ? this._handleRemoveLike()
         : this._handleLikeAdd();
     });
 
-    this._deleteButton.addEventListener('click', () => {
-      this._deleteCard();
+  //  слушаем клик по иконке удаления карточки  //
+  this._deleteButton.addEventListener('click', () => {
+      this._handleCardDelete();
     });
   }
 
   //  приватный - добавляет лайк при клике, если  (вкл./выкл.) при клике на сердечко  //  
   _handleLikeState() {
     this._likes.forEach((user) => {
-/*      console.log(`Card _handleLikeState - user: ${user._id}`); */
       if (user._id === this._userId) {
         this.addLike();
       } else {
@@ -98,20 +101,19 @@ export default class Card {
 
 //  усложняем обработку - учитываем лайки разных пользователей, отображаем счетчик лайков  // 
 
-  //  Выводим счетчик кликов  //
-  setLikesCount(res) {
-    this._likesCount.textContent = `${res._likes.length}`;
-    console.log('setLikesCount: ' + res._likes.length);
-  }
-
-  //  Закрашиваем сердечко после лайка  //
+  //  Публичный метод для закраски сердечка черным после лайка  //
   addLike() {
     this._likeButton.classList.add("element__button-like_active");
   }
 
-  //  Делаем сердечко белым после повторного клика = dislike  //
+  //  Публичный метод для покраски сердечка белым после повторного клика  //
   removeLike() {
     this._likeButton.classList.remove("element__button-like_active");
+  }
+
+  //  Публичный метод для вывода счетчика кликов  //
+  setLikesCount(res) {
+    this._likesCount.textContent = `${res.likes.length}`;
   }
   
   // приватный (_deleteCard) удаляет карточку из DOM при клике на корзинку  //

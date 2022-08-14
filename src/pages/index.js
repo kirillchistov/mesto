@@ -36,17 +36,18 @@ import {
 */
   btnAdd,
   btnEditAvatar,
-  formEditAvatar,
-  
-/*  gallery, */
-/*  popupElement, */
-/*  popupImage, */
+/*
+  formEditAvatar,  
+  gallery, 
+  popupElement,
+  popupImage, 
   popupConfirmDelete,
-  popupEditAvatar,
+*/
+popupEditAvatar,
   formValidators,
 } from "../utils/constants.js";
 
-//  Объявляем переменную для юзера  //
+//  Глобальная переменная для юзера пока пустая  //
 let userId;
 
 //  Создаем объект для API-доступа к серверу с полученным ключом в заголовке  //
@@ -62,13 +63,22 @@ const api = new Api({
 const popupImage = new PopupWithImage('#popupElement');
 popupImage.setEventListeners();
 
-//  Открываем попап места при клике на фото  //
+//  Обработчик клика по карточке места (фото)  //
 const handleCardClick = (link, name) => {
   popupImage.open(link, name);
 };
 
+//  Обработчик клика по кнопке удаления (корзинке)  //
+//  Прописываем сразу в вызове новой карточки  //
+ 
+const handleCardDelete = (card) => {
+  popupConfirmDelete.open(card);
+};
+
+
 //  Генерируем карточку (из шаблона) и возвращаем  //
 //  Получаем данные с сервера, включая id карточки, автора и пользователя, лайки  //
+//  Передаем объект с полями карты, селектор шаблона, обработчики клика, удаления и лайка/дислайка  //
 const createCard = (cardData) => {
   const card = new Card(
     {
@@ -81,7 +91,8 @@ const createCard = (cardData) => {
     },
     '#element-template', 
     handleCardClick,
-    () => popupConfirm.open(card),
+//    handleCardDelete,
+    () => popupConfirmDelete.open(card),
     () => {
       return api
         .addLike(cardData)
@@ -92,7 +103,7 @@ const createCard = (cardData) => {
         .catch((err) => {
           console.log('Ошибка: ' + err);
         })
-    },
+      },
     () => {
       return api
         .deleteLike(cardData)
@@ -123,7 +134,7 @@ const cardsSection = new Section(
 //  Обрабатываем клик по кнопке сохранения новой карточки места  //
 //  Перед обработкой вызова по API показываем пользователю UX-текст  //
 const handleFormAddPlaceSubmit = (cardData) => {
-  popupNewPlace.handleButtonText(true);
+  popupNewPlace.showLoadingButtonText(true);
   return api
   .addCard(cardData)
   .then((card) => {
@@ -139,22 +150,25 @@ const handleFormAddPlaceSubmit = (cardData) => {
 const popupNewPlace = new PopupWithForm('#popupAddPlace', handleFormAddPlaceSubmit);
 popupNewPlace.setEventListeners();
 
-const popupConfirm = new PopupWithConfirm(
-  popupConfirmDelete,
-  handlePopupConfirmSubmit
-);
-popupConfirm.setEventListeners();
 
 //  Обрабатываем клик по кнопке удаления карточки места  //
 const handlePopupConfirmSubmit = (card) => {
-  return api
-    .deleteCard(card._cardId)
-    .then(() => {
-      card.deleteCard();
-      popupConfirm.close();
-    })
-    .catch((err) => console.log('Ошибка: ' + err));
+/*  popupConfirmDelete.open(); */
+  return api.deleteCard(card._cardId)
+      .then(() => {
+        card._deleteCard();
+        popupConfirmDelete.close();
+      })
+      .catch((err) => console.log('Ошибка: ' + err));
 };
+
+//  Создаем экземпляр попапа с кнопкой для подтверждения удаления карточки места  //
+const popupConfirmDelete = new PopupWithConfirm('#popupConfirmDeletePlace', handlePopupConfirmSubmit);
+/*
+const popupConfirmDelete = new PopupWithConfirm('#popupConfirmDeletePlace');
+*/
+popupConfirmDelete.setEventListeners();
+
 
 //  Создаем экземпляр класса UserInfo с данными профиля  //
 const profileInfo = new UserInfo('.profile__name', '.profile__job','.profile__avatar');
@@ -162,14 +176,11 @@ const profileInfo = new UserInfo('.profile__name', '.profile__job','.profile__av
 //  Обрабатываем сохранение данных профиля, забираем данные по API  //
 //  Перед обработкой вызова по API показываем пользователю UX-текст  //
 const handleFormProfileSubmit = (userInfo) => {
-  popupProfile.handleButtonText(true);
-  console.log(`userInfo: ${userInfo.profileName}, ${userInfo.profileJob}`);
+  popupProfile.showLoadingButtonText(true);
   return api
     .setProfile(userInfo)
     .then((res) => {
-      console.log(res.name);
       profileInfo.setUserInfo(res);
-/*      console.log(`profileInfo: ${profileInfo.setUserInfo(res)}`); */
       popupProfile.close();
     })
     .catch((err) => console.log('Ошибка: ' + err));
@@ -183,7 +194,7 @@ popupProfile.setEventListeners();
 //  Обрабатываем сохранение аватара профиля, забираем данные по API  //
 //  Перед обработкой вызова по API показываем пользователю UX-текст  //
 const handleFormAvatarSubmit = (obj) => {
-  popupAvatar.handleButtonText(true);
+  popupAvatar.showLoadingButtonText(true);
   return api
     .setAvatar(obj)
     .then((link) => {
@@ -225,24 +236,23 @@ const activateValidation = () => {
 //  Редактирование профиля  //
 btnEdit.addEventListener("click", () => {
   const userInfo = profileInfo.getUserInfo();
-  console.log(userInfo);
   nameInput.value = userInfo.name;
   jobInput.value = userInfo.about;
   formValidators["profileEdit"].resetValidation();
-  popupProfile.handleButtonText(false);  
+  popupProfile.showLoadingButtonText(false);  
   popupProfile.open();
 });
 
 //  Добавление новой карточки места  //
 btnAdd.addEventListener("click", () => {
   formValidators["addPlace"].resetValidation();
-  popupNewPlace.handleButtonText(false);  
+  popupNewPlace.showLoadingButtonText(false);  
   popupNewPlace.open();
 });
 //  Замена аватара пользователя  //
 btnEditAvatar.addEventListener("click", () => {
   formValidators["editAvatar"].resetValidation();
-  popupAvatar.handleButtonText(false);
+  popupAvatar.showLoadingButtonText(false);
   popupAvatar.open();
 });
 
