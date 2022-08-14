@@ -67,7 +67,7 @@
                      required minlength="2" maxlength="200" placeholder="Профессия">
               <span class="popup__field-error profile-job-error">Введите профиль пользователя</span>
             </label>
-            <input class="popup__submit popup__button form__save-button popup__submit_profile" type="submit" value="Сохранить" id="btnPopupProfileSubmit">
+            <input class="popup__submit popup__button popup__submit_profile" type="submit" value="Сохранить" id="btnPopupProfileSubmit">
           </fieldset>
         </form>
       </div>
@@ -105,7 +105,7 @@
                        required placeholder="Ссылка на иллюстрацию" name="link" id="new-card-source">
                 <span class="popup__field-error new-card-source-error">Введите URL картинки</span>
               </label>
-              <input class="popup__submit popup__button form__save-button" type="submit" value="Сохранить" id="btnPopupAddPlaceSubmit"
+              <input class="popup__submit popup__button" type="submit" value="Сохранить" id="btnPopupAddPlaceSubmit"
                      name="new-card-save-button" disabled >
             </fieldset>
           </form>
@@ -115,11 +115,11 @@
     <!-- / Поп-ап с формой добавления нового места -->
 
     <!-- Поп-ап с формой подтверждения удаления места -->
-    <div class="popup popup__confirm-delete" id="popupConfirmDeletePlace">
+    <div class="popup popup__confirm" id="popupConfirmDeletePlace">
       <div class="popup__container">
         <h3 class="popup__header">Вы уверены?</h3>
-        <form class="popup__form popup__form__confirm-delete" name="popupConfirmDeletePlace" id="formConfirmDeletePlace">
-          <button class="popup__submit popup__button form__save-button"
+        <form class="popup__form popup__form_confirm_delete" name="popupConfirmDeletePlace" id="formConfirmDeletePlace">
+          <button class="popup__submit popup__button"
             type="submit" name="delete-confirm-button" value="Да">Да
           </button>
         </form>
@@ -133,7 +133,7 @@
     <!-- Добавить блоки со стилями -->
     <div class="popup popup_edit-avatar">
       <div class="popup__container">
-        <form class="popup__form form_edit-avatar" name="editAvatar" id="editAvatarForm" novalidate>
+        <form class="popup__form popup__form_edit_avatar" name="editAvatar" id="editAvatarForm" novalidate>
           <h3 class="popup__header popup__header_avatar">Обновить аватар</h3>
           <fieldset class="popup__fieldset" id="profileEditAvatarFieldset">
             <label class="popup__label">
@@ -142,7 +142,7 @@
               <span class="popup__field-error edit-avatar-url-error">Введите ссылку на аватар</span>
             </label>
           </fieldset>
-          <button class="popup__submit popup__button form__save-button" type="submit" 
+          <button class="popup__submit popup__button" type="submit" 
             name="popupConfirmEditAvatar" value="Сохранить">Сохранить</button>
         </form>
         <button class="popup__close popup__close_edit-avatar"
