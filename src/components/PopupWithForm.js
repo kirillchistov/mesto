@@ -12,7 +12,17 @@ export default class PopupWithForm extends Popup {
     this._submitHandler = submitHandler;
     this._form = this._popup.querySelector('.popup__form');
     this._inputList = Array.from(this._popup.querySelectorAll('.popup__input'));
-    this._submitButton = this._popup.querySelector(".popup__submit");    
+    this._submitButton = this._popup.querySelector(".popup__submit");
+    this._submitButtonText = this._submitButton.textContent;   
+  }
+
+  //  указываем 2 параметра (2й с текстом по умолчанию, чтобы не указывать лишний раз его)
+  renderLoading(isLoading, loadingText='Сохранение...') {
+    if (isLoading) {
+      this._submitButton.textContent = loadingText;
+    } else {
+      this._submitButton.textContent = this._submitButtonText;
+    }
   }
 
   //  метод для получения и возвращения данных формы  //
@@ -23,6 +33,18 @@ export default class PopupWithForm extends Popup {
     );
     return this._formValues;
   }
+
+  //  тут вставляем в `value` инпута данные из объекта по атрибуту `name` этого инпута
+  /*  пока что не работает, путаница с параметрами и аргументами (именами инпутов)
+  setInputValues(userInfo) {
+    console.log(userInfo);
+    this._inputList.forEach((input) => {
+      console.log(input);
+      input.value = userInfo[input.name];
+    });
+  }
+  */
+
 
   //  перезаписываем родительские методы setEventListeners и close  //
   setEventListeners() {

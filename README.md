@@ -104,6 +104,7 @@
 * [ ] ПР6: [Придумать решение с rest массива (...)](https://practicum.yandex.ru/learn/web/courses/35d951a1-b62c-4a96-96ac-a8118657fad0/sprints/34081/topics/43fd3acc-ab09-42b0-9a1a-478423a2650a/lessons/e42c1359-1e14-4586-bb92-ad1b44c6e0c4/)
 * [x] ПР7: все замечания отработаны
 * [ ] ПР8: все замечания отработаны, но не работает деплой на gh-pages
-* [ ] ПР9: ждем ревью
+* [ ] ПР9: правки по ревью (см. issues)
+* [ ] Проверить БЭМ и форматирование (Shift + Option + F.)
 
 * [Страница приложения](https://kirillchistov.github.io/mesto/index.html)

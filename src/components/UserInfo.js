@@ -18,7 +18,8 @@ export default class UserInfo {
       return this._userInfo;
     }
 
- //  Заполняем поля данными профиля c сервера и подгружаем аватар  //
+//  Заполняем поля данными профиля c сервера и подгружаем аватар  //
+
     setUserInfo(userInfo) {
       if (userInfo.name && userInfo.about && userInfo.avatar) {
         this._name.textContent = userInfo.name;
@@ -26,4 +27,23 @@ export default class UserInfo {
         this._avatar.src = userInfo.avatar;
       }      
     }
+
+
+//  Попробовал через деструктуризацию - пока не заработало Object //
+/*
+    setUserInfo(name, about, avatar, _id) {
+      this._name.textContent = name;
+      this._job.textContent = about;
+  
+      if (_id) {
+        this._id = _id;
+      }
+  
+      if (avatar) {
+        this._avatar.src = avatar;
+        this._avatar.alt = name;
+        this._avatar.title = name;
+      }
+    }
+*/
 }

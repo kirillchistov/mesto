@@ -7,7 +7,12 @@ export default class Section {
       this._renderer = renderer;
     }
 
-//  Отрисовываем имеющиеся карточки мест  //    
+  //  Публичный - Создаем и вставляем новую карточку в разметку в начало  //    
+    renderCard(item) { 
+      this._renderer(item);
+    }
+
+  //  Отрисовываем имеющиеся карточки мест  //    
     renderItems(items) {
       this._renderedItems = items;
       this._renderedItems.forEach((item) => {
@@ -15,10 +20,12 @@ export default class Section {
       });
     };
   
-//  Публичный - Вставляем новую карточку в разметку в начало галереи  //    
+//  Публичный - Создаем и (пока не) вставляем новую карточку в разметку в начало  //    
     addItem(element) {
+ /*     const card = this._renderer(element); */
       this._container.prepend(element);
     }
+
 
   //  Публичный - Очищаем галерею - пока не нужно  //
     clear() {

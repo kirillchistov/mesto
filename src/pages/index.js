@@ -111,6 +111,9 @@ const createCard = (cardData) => {
           card.setLikesCount(res);
           card.removeLike();
         })
+        .catch((err) => {
+          console.log('Ошибка: ' + err);
+        })    
     }
   );
   
@@ -134,16 +137,22 @@ const cardsSection = new Section(
 //  Обрабатываем клик по кнопке сохранения новой карточки места  //
 //  Перед обработкой вызова по API показываем пользователю UX-текст  //
 const handleFormAddPlaceSubmit = (cardData) => {
-  popupNewPlace.showLoadingButtonText(true);
+  popupNewPlace.renderLoading(true);
+/*
   return api
-  .addCard(cardData)
-  .then((card) => {
-    cardsSection.addItem(createCard(card));
-    popupNewPlace.close();
-  })
-  .catch((err) => {
-    console.log('Ошибка: ' + err);
-  });
+*/
+  api
+    .addCard(cardData)
+    .then((card) => {
+      cardsSection.addItem(createCard(card));
+      popupNewPlace.close();
+    })
+    .catch((err) => {
+      console.log('Ошибка: ' + err);
+    })
+    .finally(() => {
+      popupNewPlace.renderLoading(false);
+    });
 };
 
 //  Создаем экземпляр попапа с формой для добавления карточки места  //
@@ -153,13 +162,19 @@ popupNewPlace.setEventListeners();
 
 //  Обрабатываем клик по кнопке удаления карточки места  //
 const handlePopupConfirmSubmit = (card) => {
-/*  popupConfirmDelete.open(); */
-  return api.deleteCard(card._cardId)
+  popupConfirmDelete.renderLoading(true);
+/*  popupConfirmDelete.open(); 
+  return api.deleteCard(card._cardId) */
+    api
+      .deleteCard(card._cardId)
       .then(() => {
-        card._deleteCard();
+        card.deleteCard();
         popupConfirmDelete.close();
       })
-      .catch((err) => console.log('Ошибка: ' + err));
+      .catch((err) => console.log('Ошибка: ' + err))
+      .finally(() => {
+        popupConfirmDelete.renderLoading(false);
+      });
 };
 
 //  Создаем экземпляр попапа с кнопкой для подтверждения удаления карточки места  //
@@ -173,17 +188,30 @@ popupConfirmDelete.setEventListeners();
 //  Создаем экземпляр класса UserInfo с данными профиля  //
 const profileInfo = new UserInfo('.profile__name', '.profile__job','.profile__avatar');
 
+//  Первоначальное заполнение профиля - попробовали через деструктуризацию  //
+/*
+const setUserInfo = (userInfo) => {
+  const { name, about, avatar, _id } = userInfo;
+  profileInfo.setUserInfo(name, about, avatar, _id);
+  userId = _id;
+};
+*/
+
+
 //  Обрабатываем сохранение данных профиля, забираем данные по API  //
 //  Перед обработкой вызова по API показываем пользователю UX-текст  //
 const handleFormProfileSubmit = (userInfo) => {
-  popupProfile.showLoadingButtonText(true);
+  popupProfile.renderLoading(true);
   return api
     .setProfile(userInfo)
     .then((res) => {
       profileInfo.setUserInfo(res);
       popupProfile.close();
     })
-    .catch((err) => console.log('Ошибка: ' + err));
+    .catch((err) => console.log('Ошибка: ' + err))
+    .finally(() => {
+      popupProfile.renderLoading(false);
+    });
 };
 
 //  Создаем экземпляр попапа профиля  //
@@ -194,7 +222,7 @@ popupProfile.setEventListeners();
 //  Обрабатываем сохранение аватара профиля, забираем данные по API  //
 //  Перед обработкой вызова по API показываем пользователю UX-текст  //
 const handleFormAvatarSubmit = (obj) => {
-  popupAvatar.showLoadingButtonText(true);
+  popupAvatar.renderLoading(true);
   return api
     .setAvatar(obj)
     .then((link) => {
@@ -203,6 +231,9 @@ const handleFormAvatarSubmit = (obj) => {
     })
     .catch((err) => {
       console.log('Ошибка: ' + err);
+    })
+    .finally(() => {
+      popupAvatar.renderLoading(false);
     });
 };
 
@@ -211,11 +242,19 @@ popupAvatar.setEventListeners();
 
 //  Получаем значение userId и карточки для этого юзера через API (промисом)  //
 Promise.all([api.getCards(), api.getProfile()])
+/*
   .then((value) => {
     userId = value[1]._id;
     cardsSection.renderItems(value[0].reverse());
     profileInfo.setUserInfo(value[1]);
   })
+*/
+  .then(([initialCards, userInfo]) => {
+    userId = userInfo._id;
+    cardsSection.renderItems(initialCards.reverse());
+    profileInfo.setUserInfo(userInfo);
+  })
+
   .catch((err) => {
     console.log('Ошибка: ' + err);
   });
@@ -236,23 +275,24 @@ const activateValidation = () => {
 //  Редактирование профиля  //
 btnEdit.addEventListener("click", () => {
   const userInfo = profileInfo.getUserInfo();
+/*
+  popupProfile.setInputValues(userInfo);  
+*/
   nameInput.value = userInfo.name;
   jobInput.value = userInfo.about;
   formValidators["profileEdit"].resetValidation();
-  popupProfile.showLoadingButtonText(false);  
   popupProfile.open();
 });
 
 //  Добавление новой карточки места  //
 btnAdd.addEventListener("click", () => {
   formValidators["addPlace"].resetValidation();
-  popupNewPlace.showLoadingButtonText(false);  
   popupNewPlace.open();
 });
+
 //  Замена аватара пользователя  //
 btnEditAvatar.addEventListener("click", () => {
   formValidators["editAvatar"].resetValidation();
-  popupAvatar.showLoadingButtonText(false);
   popupAvatar.open();
 });
 
