@@ -123,7 +123,6 @@ const createCard = (cardData) => {
 //  Создаем экземпляр секции (рендеринг карточки)  //
 const cardsSection = new Section( 
   {
-/*    items: initialCards, */
     renderer: (cardData) => {
       cardsSection.addItem(createCard(cardData));
     }
@@ -131,16 +130,10 @@ const cardsSection = new Section(
   '.elements'
 );
 
-//  Загружаем исходный набор карточек - отключаем локальный массив  //
-/* cardsSection.renderItems(initialCards); */
-
 //  Обрабатываем клик по кнопке сохранения новой карточки места  //
 //  Перед обработкой вызова по API показываем пользователю UX-текст  //
 const handleFormAddPlaceSubmit = (cardData) => {
   popupNewPlace.renderLoading(true);
-/*
-  return api
-*/
   api
     .addCard(cardData)
     .then((card) => {
@@ -163,8 +156,6 @@ popupNewPlace.setEventListeners();
 //  Обрабатываем клик по кнопке удаления карточки места  //
 const handlePopupConfirmSubmit = (card) => {
   popupConfirmDelete.renderLoading(true);
-/*  popupConfirmDelete.open(); 
-  return api.deleteCard(card._cardId) */
     api
       .deleteCard(card._cardId)
       .then(() => {
@@ -179,9 +170,6 @@ const handlePopupConfirmSubmit = (card) => {
 
 //  Создаем экземпляр попапа с кнопкой для подтверждения удаления карточки места  //
 const popupConfirmDelete = new PopupWithConfirm('#popupConfirmDeletePlace', handlePopupConfirmSubmit);
-/*
-const popupConfirmDelete = new PopupWithConfirm('#popupConfirmDeletePlace');
-*/
 popupConfirmDelete.setEventListeners();
 
 
@@ -242,13 +230,6 @@ popupAvatar.setEventListeners();
 
 //  Получаем значение userId и карточки для этого юзера через API (промисом)  //
 Promise.all([api.getCards(), api.getProfile()])
-/*
-  .then((value) => {
-    userId = value[1]._id;
-    cardsSection.renderItems(value[0].reverse());
-    profileInfo.setUserInfo(value[1]);
-  })
-*/
   .then(([initialCards, userInfo]) => {
     userId = userInfo._id;
     cardsSection.renderItems(initialCards.reverse());

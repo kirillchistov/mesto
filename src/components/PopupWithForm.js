@@ -62,9 +62,5 @@ export default class PopupWithForm extends Popup {
   }
 
   //  улучшаем UX - показываем на кнопке текст о том, что идет сохранение данных  //
-  showLoadingButtonText(isLoading) {
-    isLoading
-      ? (this._submitButton.textContent = "Сохранение...")
-      : (this._submitButton.textContent = "Сохранить");
-  };
+  //  Заменили на renderLoading  //
 }

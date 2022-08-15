@@ -13,7 +13,7 @@ export default class PopupWithConfirm extends Popup {
   }
 
   //  указываем 2 параметра (2й с текстом по умолчанию, чтобы не указывать лишний раз его)
-  renderLoading(isLoading, loadingText='Сохранение...') {
+  renderLoading(isLoading, loadingText='Удаление...') {
     if (isLoading) {
       this._submitButton.textContent = loadingText;
     } else {
