@@ -16,34 +16,18 @@ import PopupWithConfirm from "../components/PopupWithConfirm.js";
 //  Импортируем стили из index.css  //
 import "./index.css";
 
-//  Импортируем все константы из /utils/constants.js  //
+//  Импортируем константы из /utils/constants.js, кроме тех, которые надо создавать по месту:  //
+//  initialCards, popupEdit, profileName, profileJob, profileAvatar, popupAdd, placeNameInput,  //
+//  placeLinkInput, formEditAvatar, gallery, popupElement, popupImage, popupConfirmDelete  //
+
 import {
   validateConfig,
-/*  
-  initialCards,
-  popupEdit, 
-  profileName,
-  profileJob,
-  profileAvatar,
-*/
   btnEdit,
   nameInput,
   jobInput,
-/*  
-  popupAdd, 
-  placeNameInput,
-  placeLinkInput,
-*/
   btnAdd,
   btnEditAvatar,
-/*
-  formEditAvatar,  
-  gallery, 
-  popupElement,
-  popupImage, 
-  popupConfirmDelete,
-*/
-popupEditAvatar,
+  popupEditAvatar,
   formValidators,
 } from "../utils/constants.js";
 
@@ -152,7 +136,6 @@ const handleFormAddPlaceSubmit = (cardData) => {
 const popupNewPlace = new PopupWithForm('#popupAddPlace', handleFormAddPlaceSubmit);
 popupNewPlace.setEventListeners();
 
-
 //  Обрабатываем клик по кнопке удаления карточки места  //
 const handlePopupConfirmSubmit = (card) => {
   popupConfirmDelete.renderLoading(true);
@@ -172,18 +155,8 @@ const handlePopupConfirmSubmit = (card) => {
 const popupConfirmDelete = new PopupWithConfirm('#popupConfirmDeletePlace', handlePopupConfirmSubmit);
 popupConfirmDelete.setEventListeners();
 
-
 //  Создаем экземпляр класса UserInfo с данными профиля  //
 const profileInfo = new UserInfo('.profile__name', '.profile__job','.profile__avatar');
-
-//  Первоначальное заполнение профиля - попробовали через деструктуризацию  //
-/*
-const setUserInfo = (userInfo) => {
-  const { name, about, avatar, _id } = userInfo;
-  profileInfo.setUserInfo(name, about, avatar, _id);
-  userId = _id;
-};
-*/
 
 
 //  Обрабатываем сохранение данных профиля, забираем данные по API  //
@@ -253,12 +226,9 @@ const activateValidation = () => {
 };
 
 //  Подключаем слушатели на кнопки в профиле  //
-//  Редактирование профиля  //
+//  Редактирование профиля - ревьюер предлагает через деструктуризацию  //
 btnEdit.addEventListener("click", () => {
   const userInfo = profileInfo.getUserInfo();
-/*
-  popupProfile.setInputValues(userInfo);  
-*/
   nameInput.value = userInfo.name;
   jobInput.value = userInfo.about;
   formValidators["profileEdit"].resetValidation();

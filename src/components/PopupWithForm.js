@@ -35,7 +35,7 @@ export default class PopupWithForm extends Popup {
   }
 
   //  тут вставляем в `value` инпута данные из объекта по атрибуту `name` этого инпута
-  /*  пока что не работает, путаница с параметрами и аргументами (именами инпутов)
+  //  ревьюер рекомендовал сделать метод setInputValue с записью значений по имени через forEach((input) =>  //
   setInputValues(userInfo) {
     console.log(userInfo);
     this._inputList.forEach((input) => {
@@ -43,8 +43,6 @@ export default class PopupWithForm extends Popup {
       input.value = userInfo[input.name];
     });
   }
-  */
-
 
   //  перезаписываем родительские методы setEventListeners и close  //
   setEventListeners() {

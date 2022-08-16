@@ -19,17 +19,7 @@ export default class UserInfo {
     }
 
 //  Заполняем поля данными профиля c сервера и подгружаем аватар  //
-/*
-    setUserInfo(userInfo) {
-      if (userInfo.name && userInfo.about && userInfo.avatar) {
-        this._name.textContent = userInfo.name;
-        this._job.textContent = userInfo.about;
-        this._avatar.src = userInfo.avatar;
-      }      
-    }
-*/
-
-//  Делаем через деструктуризацию - пока не заработало  //
+//  По совету ревьюера делаем через деструктуризацию  //
 
     setUserInfo({ name, about, avatar, _id }) {
       this._name.textContent = name;

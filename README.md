@@ -97,13 +97,13 @@
 * [x] 13. Обрабатывать ошибки в .catch
 * [x] 14. Network для просмотра запросов
 
-* [ ] [Чек-лист ПР9](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-9.pdf)
+* [x] [Чек-лист ПР9](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-9.pdf)
 
 **BackLog Доработки по ПР**
 * [ ] ПР5+ [Документация по JSDOC](https://jsdoc.app/about-getting-started.html)
 * [ ] ПР6: [Придумать решение с rest массива (...)](https://practicum.yandex.ru/learn/web/courses/35d951a1-b62c-4a96-96ac-a8118657fad0/sprints/34081/topics/43fd3acc-ab09-42b0-9a1a-478423a2650a/lessons/e42c1359-1e14-4586-bb92-ad1b44c6e0c4/)
 * [x] ПР7: все замечания отработаны
-* [ ] ПР8: все замечания отработаны, но не работает деплой на gh-pages
+* [x] ПР8: все замечания отработаны
 * [ ] ПР9: правки по ревью (см. issues)
 * [ ] Проверить БЭМ и форматирование (Shift + Option + F.)
 

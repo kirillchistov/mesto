@@ -4,8 +4,7 @@
 export const btnEdit = document.querySelector('.profile__button-edit');
 export const btnAdd = document.querySelector('.profile__button-add');
 
-//   Попап редактирования профиля  //
-/* export const popupEdit = document.querySelector('#popupProfile'); */
+//  Попап, форма и инпуты редактирования профиля  //
 export const popupEdit = "#popupProfile";
 export const formProfile = document.querySelector('#formProfileEdit');
 export const nameInput = document.querySelector('.popup__input_user_name');
@@ -15,28 +14,27 @@ export const profileJob = document.querySelector('.profile__job');
 export const profileAvatar = document.querySelector('.profile__avatar');
 export const btnEditAvatar = document.querySelector(".profile__avatar-edit");
 
-//  Попап редактирования аватара пользователя  //
+//  Попап и форма редактирования аватара пользователя  //
 export const popupEditAvatar = ".popup_edit-avatar";
 export const formEditAvatar = document.querySelector('#editAvatarForm');
-//  Попап добавления нового места //
-/* export const popupAdd = document.querySelector('#popupAddPlace'); */
+
+//  Попап, форма и инпуты добавления нового места  //
 export const popupAdd = "#popupAddPlace";
-export const gallery = document.querySelector('.elements');
 export const formCreateCard = document.querySelector('#formAddPlace');
 export const placeNameInput = document.querySelector('.popup__input_place_name');
 export const placeLinkInput = document.querySelector('.popup__input_place_link');
 export const btnCreateSubmit = document.querySelector('#btnPopupAddPlaceSubmit');
 
-/* const elementTemplate = document.querySelector('#element-template').content; // пока не используется*/
-
 //  Попап открытия карточки места //
-/* export const popupElement = document.querySelector('#popupElement'); */
 export const popupElement = "#popupElement";
 export const popupImage = document.querySelector(popupElement).querySelector('.popup__image');
 export const popupImageCaption = document.querySelector(popupElement).querySelector('.popup__image-caption');
 
 //  Попап подтверждения удаления карточки  //
 export const popupConfirmDelete = "#popupConfirmDeletePlace";
+
+//  Секция с карточками мест  //
+export const gallery = document.querySelector('.elements');
 
 //  Глобальные константы  //
 export const page = document.querySelector('.page');
@@ -64,7 +62,7 @@ export const validateConfig = {
   errorClass: 'popup__field-error_active'
 };
 
-//  Исходный набор карточек  //
+//  Исходный набор карточек - добавить из https://rosphoto.com/travel/puteshestviya_po_rossii-2668 //
 export const initialCards = [
     {
       name: 'Архыз',
